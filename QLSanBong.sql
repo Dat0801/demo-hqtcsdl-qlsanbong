@@ -172,10 +172,6 @@ AS
 BEGIN
 	DECLARE @SOLUONG INT, @MAHD INT, @MADV INT
 	SET @SOLUONG = (SELECT SOLUONG FROM inserted)
-<<<<<<< HEAD
-
-=======
->>>>>>> 8340c86f97fc613337fbf52e3d42280934af9031
 	
 	UPDATE HOADON
 	SET TONGTIEN = TONGTIEN + DICHVU.DONGIA * @SOLUONG
@@ -415,7 +411,6 @@ BEGIN
 END
 GO
 
-drop proc SP_TimKiemLoaiSan
 -- Stored Procedures Quản lý lịch đặt sân
 GO
 CREATE PROC SP_GetListLichDatSan
@@ -455,7 +450,6 @@ BEGIN
 END
 GO
 
--- Stored Procedures Dịch vụ
 -- Stored Procedures SP_GetListLoaiSan
 GO
 CREATE PROC SP_GetListDichVu
@@ -474,6 +468,7 @@ BEGIN
 	SELECT * FROM DICHVU WHERE TENDV = @TenDV
 END
 GO
+
 -- Stored Procedures SP_ThemDichVu
 GO
 CREATE PROC SP_ThemDichVu
@@ -492,8 +487,6 @@ AS
 BEGIN
 	DELETE FROM DICHVU WHERE TenDV = @TenDV
 END
-
-
 go
 
 CREATE PROC SP_SuaDichVu
@@ -505,6 +498,7 @@ BEGIN
 	WHERE DICHVU.MaDV = @MaDV
 END
 GO
+
 -- Stored Procedures SP_GetListHoaDon
 GO
 CREATE PROC SP_GetListHoaDon
@@ -604,7 +598,6 @@ BEGIN
 	WHERE TenKH LIKE '%' + @STR + '%' OR MaKH = convert(int,@STR) OR DiaChi LIKE '%' + @STR + '%' OR SDT LIKE '%' + @STR + '%';
 END
 GO
-drop proc SP_TimKH
 
 --Stored Procedures GetlistKhachHang
 GO
@@ -625,7 +618,6 @@ BEGIN
 	VALUES (@TenKH, @DiaChi,@SDT)
 END
 GO
-drop proc SP_ThemKhachHang
 
 --Stored Procedures	SuaDanhSachKH
 GO
@@ -638,14 +630,15 @@ BEGIN
 	WHERE MaKH = @MaKH
 END
 GO
-drop proc SP_SuaDanhSachKH
 
 --PHÂN QUYỀN
 
 SP_ADDROLE NHANVIEN
+go
 SP_ADDROLE NguoiQuanTri
-
+go
 SP_ADDLOGIN 'admin', '123'
+go
 SP_ADDUSER 'admin','admin'
 
 EXEC SP_ADDROLEMEMBER 'db_owner','admin'
