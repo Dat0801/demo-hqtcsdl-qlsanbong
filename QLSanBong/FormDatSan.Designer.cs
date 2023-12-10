@@ -53,6 +53,7 @@ namespace QLSanBong
             this.dataGridView_LichDatSan = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip_LichDatSan = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXuatReport = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_DatSan.SuspendLayout();
             this.groupBoxDatSan.SuspendLayout();
@@ -74,6 +75,7 @@ namespace QLSanBong
             // tabPage_DatSan
             // 
             this.tabPage_DatSan.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage_DatSan.Controls.Add(this.btnXuatReport);
             this.tabPage_DatSan.Controls.Add(this.groupBoxDatSan);
             this.tabPage_DatSan.Location = new System.Drawing.Point(4, 29);
             this.tabPage_DatSan.Name = "tabPage_DatSan";
@@ -314,6 +316,16 @@ namespace QLSanBong
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
+            // btnXuatReport
+            // 
+            this.btnXuatReport.Location = new System.Drawing.Point(1027, 6);
+            this.btnXuatReport.Name = "btnXuatReport";
+            this.btnXuatReport.Size = new System.Drawing.Size(185, 35);
+            this.btnXuatReport.TabIndex = 4;
+            this.btnXuatReport.Text = "Xuất Report";
+            this.btnXuatReport.UseVisualStyleBackColor = true;
+            this.btnXuatReport.Click += new System.EventHandler(this.btnXuatReport_Click);
+            // 
             // FormDatSan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -357,5 +369,6 @@ namespace QLSanBong
         private System.Windows.Forms.TextBox txtMaLich;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_LichDatSan;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.Button btnXuatReport;
     }
 }

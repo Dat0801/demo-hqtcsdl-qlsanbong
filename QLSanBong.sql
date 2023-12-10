@@ -181,8 +181,6 @@ BEGIN
 END
 GO
 
-
-
 GO
 CREATE TRIGGER UpdateTotalChiTietHD
 ON CHITIETHD
@@ -483,7 +481,7 @@ END
 GO
 -- Stored Procedures SP_XoaDV
 GO
-CREATE PROC SP_XoaDV1
+CREATE PROC SP_XoaDV
 @TenDV nvarchar(200)
 AS
 BEGIN
@@ -492,10 +490,8 @@ END
 
 
 go
-=======
-GO
 
-CREATE PROC SP_SuaDichVu1
+CREATE PROC SP_SuaDichVu
 @MaDV int, @TenDV nvarchar(100), @Gia int
 AS
 BEGIN
@@ -514,7 +510,7 @@ END
 GO
  
  GO
-CREATE PROC SP_SuaHoaDon5
+CREATE PROC SP_SuaHoaDon
     @MaHD INT,
     @NgayTao DATETIME,
     @TongTien DECIMAL(18, 0),

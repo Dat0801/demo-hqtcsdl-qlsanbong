@@ -16,7 +16,6 @@ namespace QLSanBong.DTO
         public int TongPhut { get; set; }
         public decimal DonGia { get; set; }
         public decimal TongTien { get; set; }
-
         public HoaDon(DataRow row)
         {
             this.MaHD = (int)row["MaHD"];
