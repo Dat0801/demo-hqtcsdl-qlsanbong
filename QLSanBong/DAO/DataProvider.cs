@@ -13,7 +13,7 @@ namespace MyClass.DAO
         private static DataProvider instance;
 
         //private string conStr = "Data Source=LAPTOP-70K25FBU;Initial Catalog=QLSANBONG;Integrated Security=True";
-        private string conStr = "Data Source=DESKTOP-S0K3I3A;Initial Catalog=QLSANBONG;Integrated Security=True";
+        private string conStr = @"Data Source=BAO\SQLEXPRESS01;Initial Catalog=QLSANBONG;Integrated Security=True";
 
         public static DataProvider Instance
         {
@@ -72,7 +72,7 @@ namespace MyClass.DAO
                         }
                     }
                 }
-                data = cmd.ExecuteNonQuery();
+                    data = cmd.ExecuteNonQuery();
                 connection.Close();
             }
             return data;

@@ -23,7 +23,7 @@ namespace QLSanBong.DAO
         public List<KhachHang> LoadListKH()
         {
             List<KhachHang> listKH = new List<KhachHang>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from KhachHang");
+            DataTable data = DataProvider.Instance.ExecuteQuery("SP_GetListKhachHang");
             foreach (DataRow row in data.Rows)
             {
                 KhachHang kh = new KhachHang(row);
@@ -32,24 +32,25 @@ namespace QLSanBong.DAO
             return listKH;
         }
 
-        public bool ThemKhachHang(string tenKhachHang, string diachi,  string sdt)
+        public int ThemKhachHang(string tenkh, string diachi,  string sdt)
         {
-            string query = "insert into KHACHHANG values (N'" + tenKhachHang + "', N'" + diachi + "', '" + sdt + "')";
-            DataTable result = DataProvider.Instance.ExecuteQuery(query);
-            return result.Rows.Count > 0;
+            string query = "SP_ThemKhachHang @TenKH , @DiaChi , @SDT";
+            //DataTable result = DataProvider.Instance.ExecuteQuery(query);
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenkh, diachi, sdt });
+            return result;
         }
-        public bool SuaDanhSach(string tenKhachHang, string diachi,  string sdt, int makh)
+        public int SuaDanhSach( string tenkh,  string diachi, string sdt, int makh)
         {
-            string query = "update KHACHHANG set TenKH = N'" + tenKhachHang + "',DiaChi = N'" + diachi + "',SDT= '" + sdt + "'where MaKH = " + makh + "";
-            DataTable result = DataProvider.Instance.ExecuteQuery(query);
-            return result.Rows.Count > 0;
+            string query = "SP_SuaDanhSachKH @TenKH , @DiaChi , @SDT , @MaKH";
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  tenkh, diachi, sdt , makh });
+            return result;
         }
         public List<KhachHang> timKiemKhachHang(string tenKhachHang)
         {
             List<KhachHang> ListKhachHang = new List<KhachHang>();
-            string query = "SELECT * FROM KHACHHANG WHERE TenKH Like '%" + tenKhachHang + "%'";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            foreach(DataRow row in data.Rows)
+            string query = "SP_TimKH @TenKH";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tenKhachHang });
+            foreach (DataRow row in data.Rows)
             {
                 KhachHang khachhang = new KhachHang(row);
                 ListKhachHang.Add(khachhang);
