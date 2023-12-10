@@ -1,4 +1,5 @@
-﻿using MyClass.DAO;
+﻿using Microsoft.Reporting.WinForms;
+using MyClass.DAO;
 using QLSanBong.DAO;
 using QLSanBong.DTO;
 using System;
@@ -432,7 +433,11 @@ namespace QLSanBong
                 int thang = int.Parse(cbo_Thang.SelectedItem.ToString());
                 int nam = int.Parse(cbo_Thang_Nam.SelectedItem.ToString());
                 List<HoaDon> listHD = HoaDonDAO.Instance.getListHoaDon(thang, nam);
-                dgv_Doanhthu.DataSource = listHD;
+                reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
+                ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                this.reportViewer1.RefreshReport();
                 decimal TongDT = 0;
                 foreach (var item in listHD)
                 {
@@ -453,7 +458,11 @@ namespace QLSanBong
             {
                 int nam = int.Parse(cbo_Nam.SelectedItem.ToString());
                 List<HoaDon> listHD = HoaDonDAO.Instance.getListHoaDon(nam);
-                dgv_Doanhthu.DataSource = listHD;
+                reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
+                ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                this.reportViewer1.RefreshReport();
                 decimal TongDT = 0;
                 foreach (var item in listHD)
                 {
@@ -531,6 +540,15 @@ namespace QLSanBong
                 }
             }
             loadHoaDon();
+        }
+        private void FormQuanLyKinhDoanh_Load(object sender, EventArgs e)
+        {
+            List<HoaDon> listHD = HoaDonDAO.Instance.LoadListHoaDon();
+            reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
+            ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+            this.reportViewer1.RefreshReport();
         }
     }
 }

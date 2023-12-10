@@ -34,19 +34,18 @@ namespace QLSanBong
             // 
             // reportViewer2
             // 
-            this.reportViewer2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "QLSanBong.Report1.rdlc";
-            this.reportViewer2.Location = new System.Drawing.Point(1, 0);
+            this.reportViewer2.Location = new System.Drawing.Point(-4, 1);
             this.reportViewer2.Name = "reportViewer2";
             this.reportViewer2.ServerReport.BearerToken = null;
-            this.reportViewer2.Size = new System.Drawing.Size(1126, 702);
+            this.reportViewer2.Size = new System.Drawing.Size(875, 702);
             this.reportViewer2.TabIndex = 0;
             // 
             // FrmReportLichDatSan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1129, 704);
+            this.ClientSize = new System.Drawing.Size(937, 704);
             this.Controls.Add(this.reportViewer2);
             this.Name = "FrmReportLichDatSan";
             this.Text = "FrmReportLichDatSan";

@@ -36,13 +36,10 @@ namespace QLSanBong
             this.lbl_TongDT = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_TKNam = new System.Windows.Forms.Button();
             this.cbo_Nam = new System.Windows.Forms.ComboBox();
-            this.dgv_Doanhthu = new System.Windows.Forms.DataGridView();
             this.groupBox_TimKiemSan = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnTKThang = new System.Windows.Forms.Button();
             this.cbo_Thang_Nam = new System.Windows.Forms.ComboBox();
             this.cbo_Thang = new System.Windows.Forms.ComboBox();
             this.tab_QLDichVu = new System.Windows.Forms.TabPage();
@@ -50,16 +47,12 @@ namespace QLSanBong
             this.dgv_DichVu = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txt_MaDV = new System.Windows.Forms.TextBox();
-            this.btnThemDV = new System.Windows.Forms.Button();
-            this.btnSuaDV = new System.Windows.Forms.Button();
-            this.btnXoaDV = new System.Windows.Forms.Button();
             this.txt_dongiaDV = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_tenDV = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btn_timDV = new System.Windows.Forms.Button();
             this.txt_NameDV = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tab_HoaDon = new System.Windows.Forms.TabPage();
@@ -69,8 +62,6 @@ namespace QLSanBong
             this.txt_MaHD = new System.Windows.Forms.TextBox();
             this.txt_Dongia = new System.Windows.Forms.TextBox();
             this.txt_PhutDa = new System.Windows.Forms.TextBox();
-            this.btn_SuaHD = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
             this.dateTimePicker_NgayBD = new System.Windows.Forms.DateTimePicker();
             this.txt_Tongtien = new System.Windows.Forms.TextBox();
             this.txt_MaSan = new System.Windows.Forms.TextBox();
@@ -83,9 +74,6 @@ namespace QLSanBong
             this.lb_hoadon = new System.Windows.Forms.Label();
             this.dgv_HoaDon = new System.Windows.Forms.DataGridView();
             this.tab_CTHD = new System.Windows.Forms.TabPage();
-            this.btn_ThemCTHD = new System.Windows.Forms.Button();
-            this.btn_SuaCTHD = new System.Windows.Forms.Button();
-            this.btn_XoaCTHD = new System.Windows.Forms.Button();
             this.txt_SoLuong = new System.Windows.Forms.TextBox();
             this.dgv_CTHD = new System.Windows.Forms.DataGridView();
             this.cbo_MaHD = new System.Windows.Forms.ComboBox();
@@ -105,22 +93,33 @@ namespace QLSanBong
             this.lb_DiaChi = new System.Windows.Forms.Label();
             this.lb_TenKH = new System.Windows.Forms.Label();
             this.txt_TenKH = new System.Windows.Forms.TextBox();
-            this.btnThemKH = new System.Windows.Forms.Button();
-            this.btnSuaKH = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.btn_timkiem = new System.Windows.Forms.Button();
             this.txt_tkTenKH = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cbo_MaSan = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.txt_TongGio = new System.Windows.Forms.TextBox();
+            this.btn_TKNam = new System.Windows.Forms.Button();
+            this.btnTKThang = new System.Windows.Forms.Button();
+            this.btnThemDV = new System.Windows.Forms.Button();
+            this.btnSuaDV = new System.Windows.Forms.Button();
+            this.btnXoaDV = new System.Windows.Forms.Button();
+            this.btn_timDV = new System.Windows.Forms.Button();
+            this.btn_SuaHD = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btn_ThemCTHD = new System.Windows.Forms.Button();
+            this.btn_SuaCTHD = new System.Windows.Forms.Button();
+            this.btn_XoaCTHD = new System.Windows.Forms.Button();
+            this.btnThemKH = new System.Windows.Forms.Button();
+            this.btnSuaKH = new System.Windows.Forms.Button();
+            this.btn_timkiem = new System.Windows.Forms.Button();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tab_QLKinhDoanh.SuspendLayout();
             this.tab_QLDoanhThu.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Doanhthu)).BeginInit();
             this.groupBox_TimKiemSan.SuspendLayout();
             this.tab_QLDichVu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -159,9 +158,9 @@ namespace QLSanBong
             // 
             // tab_QLDoanhThu
             // 
+            this.tab_QLDoanhThu.Controls.Add(this.reportViewer1);
             this.tab_QLDoanhThu.Controls.Add(this.groupBox6);
             this.tab_QLDoanhThu.Controls.Add(this.groupBox4);
-            this.tab_QLDoanhThu.Controls.Add(this.dgv_Doanhthu);
             this.tab_QLDoanhThu.Controls.Add(this.groupBox_TimKiemSan);
             this.tab_QLDoanhThu.Location = new System.Drawing.Point(4, 29);
             this.tab_QLDoanhThu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -191,7 +190,7 @@ namespace QLSanBong
             this.lbl_TongDT.ForeColor = System.Drawing.Color.Black;
             this.lbl_TongDT.Location = new System.Drawing.Point(112, 39);
             this.lbl_TongDT.Name = "lbl_TongDT";
-            this.lbl_TongDT.Size = new System.Drawing.Size(228, 32);
+            this.lbl_TongDT.Size = new System.Drawing.Size(229, 32);
             this.lbl_TongDT.TabIndex = 15;
             this.lbl_TongDT.Text = "Tổng doanh thu: ";
             // 
@@ -220,21 +219,6 @@ namespace QLSanBong
             this.label5.TabIndex = 15;
             this.label5.Text = "Năm";
             // 
-            // btn_TKNam
-            // 
-            this.btn_TKNam.BackColor = System.Drawing.Color.White;
-            this.btn_TKNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_TKNam.Image = ((System.Drawing.Image)(resources.GetObject("btn_TKNam.Image")));
-            this.btn_TKNam.Location = new System.Drawing.Point(244, 27);
-            this.btn_TKNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_TKNam.Name = "btn_TKNam";
-            this.btn_TKNam.Size = new System.Drawing.Size(204, 53);
-            this.btn_TKNam.TabIndex = 13;
-            this.btn_TKNam.Text = "Thống kê năm";
-            this.btn_TKNam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_TKNam.UseVisualStyleBackColor = false;
-            this.btn_TKNam.Click += new System.EventHandler(this.btn_TKNam_Click);
-            // 
             // cbo_Nam
             // 
             this.cbo_Nam.FormattingEnabled = true;
@@ -247,19 +231,6 @@ namespace QLSanBong
             this.cbo_Nam.Name = "cbo_Nam";
             this.cbo_Nam.Size = new System.Drawing.Size(76, 28);
             this.cbo_Nam.TabIndex = 12;
-            // 
-            // dgv_Doanhthu
-            // 
-            this.dgv_Doanhthu.AllowUserToAddRows = false;
-            this.dgv_Doanhthu.AllowUserToDeleteRows = false;
-            this.dgv_Doanhthu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_Doanhthu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Doanhthu.Location = new System.Drawing.Point(29, 149);
-            this.dgv_Doanhthu.Name = "dgv_Doanhthu";
-            this.dgv_Doanhthu.RowHeadersWidth = 51;
-            this.dgv_Doanhthu.RowTemplate.Height = 24;
-            this.dgv_Doanhthu.Size = new System.Drawing.Size(1196, 448);
-            this.dgv_Doanhthu.TabIndex = 4;
             // 
             // groupBox_TimKiemSan
             // 
@@ -298,21 +269,6 @@ namespace QLSanBong
             this.label3.Size = new System.Drawing.Size(55, 20);
             this.label3.TabIndex = 14;
             this.label3.Text = "Tháng";
-            // 
-            // btnTKThang
-            // 
-            this.btnTKThang.BackColor = System.Drawing.Color.White;
-            this.btnTKThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTKThang.Image = ((System.Drawing.Image)(resources.GetObject("btnTKThang.Image")));
-            this.btnTKThang.Location = new System.Drawing.Point(379, 27);
-            this.btnTKThang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnTKThang.Name = "btnTKThang";
-            this.btnTKThang.Size = new System.Drawing.Size(204, 53);
-            this.btnTKThang.TabIndex = 13;
-            this.btnTKThang.Text = "Thống kê tháng";
-            this.btnTKThang.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTKThang.UseVisualStyleBackColor = false;
-            this.btnTKThang.Click += new System.EventHandler(this.btnTKThang_Click);
             // 
             // cbo_Thang_Nam
             // 
@@ -417,45 +373,6 @@ namespace QLSanBong
             this.txt_MaDV.Size = new System.Drawing.Size(233, 28);
             this.txt_MaDV.TabIndex = 48;
             // 
-            // btnThemDV
-            // 
-            this.btnThemDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemDV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemDV.Image")));
-            this.btnThemDV.Location = new System.Drawing.Point(29, 417);
-            this.btnThemDV.Name = "btnThemDV";
-            this.btnThemDV.Size = new System.Drawing.Size(134, 69);
-            this.btnThemDV.TabIndex = 46;
-            this.btnThemDV.Text = "Thêm";
-            this.btnThemDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThemDV.UseVisualStyleBackColor = true;
-            this.btnThemDV.Click += new System.EventHandler(this.btnThemDV_Click);
-            // 
-            // btnSuaDV
-            // 
-            this.btnSuaDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaDV.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaDV.Image")));
-            this.btnSuaDV.Location = new System.Drawing.Point(349, 417);
-            this.btnSuaDV.Name = "btnSuaDV";
-            this.btnSuaDV.Size = new System.Drawing.Size(134, 69);
-            this.btnSuaDV.TabIndex = 45;
-            this.btnSuaDV.Text = "Sửa";
-            this.btnSuaDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSuaDV.UseVisualStyleBackColor = true;
-            this.btnSuaDV.Click += new System.EventHandler(this.btnSuaDV_Click);
-            // 
-            // btnXoaDV
-            // 
-            this.btnXoaDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaDV.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaDV.Image")));
-            this.btnXoaDV.Location = new System.Drawing.Point(187, 417);
-            this.btnXoaDV.Name = "btnXoaDV";
-            this.btnXoaDV.Size = new System.Drawing.Size(134, 69);
-            this.btnXoaDV.TabIndex = 44;
-            this.btnXoaDV.Text = "Xóa";
-            this.btnXoaDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoaDV.UseVisualStyleBackColor = true;
-            this.btnXoaDV.Click += new System.EventHandler(this.btnXoaDV_Click);
-            // 
             // txt_dongiaDV
             // 
             this.txt_dongiaDV.Location = new System.Drawing.Point(169, 329);
@@ -468,7 +385,7 @@ namespace QLSanBong
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(60, 332);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 20);
+            this.label2.Size = new System.Drawing.Size(69, 21);
             this.label2.TabIndex = 39;
             this.label2.Text = "Đơn giá";
             // 
@@ -484,7 +401,7 @@ namespace QLSanBong
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(60, 271);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 20);
+            this.label4.Size = new System.Drawing.Size(103, 21);
             this.label4.TabIndex = 37;
             this.label4.Text = "Tên dịch vụ:";
             // 
@@ -513,20 +430,6 @@ namespace QLSanBong
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tìm kiếm";
             // 
-            // btn_timDV
-            // 
-            this.btn_timDV.BackColor = System.Drawing.Color.White;
-            this.btn_timDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_timDV.Image = ((System.Drawing.Image)(resources.GetObject("btn_timDV.Image")));
-            this.btn_timDV.Location = new System.Drawing.Point(463, 11);
-            this.btn_timDV.Name = "btn_timDV";
-            this.btn_timDV.Size = new System.Drawing.Size(187, 54);
-            this.btn_timDV.TabIndex = 15;
-            this.btn_timDV.Text = "Tìm kiếm";
-            this.btn_timDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_timDV.UseVisualStyleBackColor = false;
-            this.btn_timDV.Click += new System.EventHandler(this.btn_timDV_Click);
-            // 
             // txt_NameDV
             // 
             this.txt_NameDV.Location = new System.Drawing.Point(199, 25);
@@ -539,7 +442,7 @@ namespace QLSanBong
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(77, 28);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(96, 20);
+            this.label13.Size = new System.Drawing.Size(99, 21);
             this.label13.TabIndex = 0;
             this.label13.Text = "Tên dịch vụ";
             // 
@@ -551,8 +454,6 @@ namespace QLSanBong
             this.tab_HoaDon.Controls.Add(this.txt_MaHD);
             this.tab_HoaDon.Controls.Add(this.txt_Dongia);
             this.tab_HoaDon.Controls.Add(this.txt_PhutDa);
-            this.tab_HoaDon.Controls.Add(this.btn_SuaHD);
-            this.tab_HoaDon.Controls.Add(this.btnXoa);
             this.tab_HoaDon.Controls.Add(this.dateTimePicker_NgayBD);
             this.tab_HoaDon.Controls.Add(this.txt_Tongtien);
             this.tab_HoaDon.Controls.Add(this.txt_MaSan);
@@ -563,6 +464,8 @@ namespace QLSanBong
             this.tab_HoaDon.Controls.Add(this.label12);
             this.tab_HoaDon.Controls.Add(this.panel1);
             this.tab_HoaDon.Controls.Add(this.dgv_HoaDon);
+            this.tab_HoaDon.Controls.Add(this.btn_SuaHD);
+            this.tab_HoaDon.Controls.Add(this.btnXoa);
             this.tab_HoaDon.Location = new System.Drawing.Point(4, 29);
             this.tab_HoaDon.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tab_HoaDon.Name = "tab_HoaDon";
@@ -628,33 +531,6 @@ namespace QLSanBong
             this.txt_PhutDa.ReadOnly = true;
             this.txt_PhutDa.Size = new System.Drawing.Size(100, 28);
             this.txt_PhutDa.TabIndex = 46;
-            // 
-            // btn_SuaHD
-            // 
-            this.btn_SuaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SuaHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaHD.Image")));
-            this.btn_SuaHD.Location = new System.Drawing.Point(997, 126);
-            this.btn_SuaHD.Name = "btn_SuaHD";
-            this.btn_SuaHD.Size = new System.Drawing.Size(131, 70);
-            this.btn_SuaHD.TabIndex = 43;
-            this.btn_SuaHD.Text = "Sửa";
-            this.btn_SuaHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_SuaHD.UseVisualStyleBackColor = true;
-            this.btn_SuaHD.Click += new System.EventHandler(this.btn_SuaHD_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(997, 53);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(131, 62);
-            this.btnXoa.TabIndex = 42;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // dateTimePicker_NgayBD
             // 
@@ -792,45 +668,6 @@ namespace QLSanBong
             this.tab_CTHD.Text = "Chi tiết hóa đơn";
             this.tab_CTHD.UseVisualStyleBackColor = true;
             // 
-            // btn_ThemCTHD
-            // 
-            this.btn_ThemCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ThemCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemCTHD.Image")));
-            this.btn_ThemCTHD.Location = new System.Drawing.Point(519, 72);
-            this.btn_ThemCTHD.Name = "btn_ThemCTHD";
-            this.btn_ThemCTHD.Size = new System.Drawing.Size(134, 69);
-            this.btn_ThemCTHD.TabIndex = 49;
-            this.btn_ThemCTHD.Text = "Thêm";
-            this.btn_ThemCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_ThemCTHD.UseVisualStyleBackColor = true;
-            this.btn_ThemCTHD.Click += new System.EventHandler(this.btn_ThemCTHD_Click);
-            // 
-            // btn_SuaCTHD
-            // 
-            this.btn_SuaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SuaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaCTHD.Image")));
-            this.btn_SuaCTHD.Location = new System.Drawing.Point(839, 72);
-            this.btn_SuaCTHD.Name = "btn_SuaCTHD";
-            this.btn_SuaCTHD.Size = new System.Drawing.Size(134, 69);
-            this.btn_SuaCTHD.TabIndex = 48;
-            this.btn_SuaCTHD.Text = "Sửa";
-            this.btn_SuaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_SuaCTHD.UseVisualStyleBackColor = true;
-            this.btn_SuaCTHD.Click += new System.EventHandler(this.btn_SuaCTHD_Click);
-            // 
-            // btn_XoaCTHD
-            // 
-            this.btn_XoaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_XoaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XoaCTHD.Image")));
-            this.btn_XoaCTHD.Location = new System.Drawing.Point(677, 72);
-            this.btn_XoaCTHD.Name = "btn_XoaCTHD";
-            this.btn_XoaCTHD.Size = new System.Drawing.Size(134, 69);
-            this.btn_XoaCTHD.TabIndex = 47;
-            this.btn_XoaCTHD.Text = "Xóa";
-            this.btn_XoaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_XoaCTHD.UseVisualStyleBackColor = true;
-            this.btn_XoaCTHD.Click += new System.EventHandler(this.btn_XoaCTHD_Click);
-            // 
             // txt_SoLuong
             // 
             this.txt_SoLuong.Location = new System.Drawing.Point(236, 153);
@@ -873,7 +710,7 @@ namespace QLSanBong
             this.label15.AutoSize = true;
             this.label15.Location = new System.Drawing.Point(116, 153);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 20);
+            this.label15.Size = new System.Drawing.Size(78, 21);
             this.label15.TabIndex = 2;
             this.label15.Text = "Số lượng";
             // 
@@ -965,7 +802,7 @@ namespace QLSanBong
             this.label6.Location = new System.Drawing.Point(73, 202);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 20);
+            this.label6.Size = new System.Drawing.Size(69, 21);
             this.label6.TabIndex = 65;
             this.label6.Text = "Mã KH:";
             // 
@@ -1000,7 +837,7 @@ namespace QLSanBong
             this.lb_SDT.Location = new System.Drawing.Point(73, 357);
             this.lb_SDT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_SDT.Name = "lb_SDT";
-            this.lb_SDT.Size = new System.Drawing.Size(118, 20);
+            this.lb_SDT.Size = new System.Drawing.Size(123, 21);
             this.lb_SDT.TabIndex = 60;
             this.lb_SDT.Text = "Số Điện Thoại:";
             // 
@@ -1010,7 +847,7 @@ namespace QLSanBong
             this.lb_DiaChi.Location = new System.Drawing.Point(73, 305);
             this.lb_DiaChi.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_DiaChi.Name = "lb_DiaChi";
-            this.lb_DiaChi.Size = new System.Drawing.Size(64, 20);
+            this.lb_DiaChi.Size = new System.Drawing.Size(69, 21);
             this.lb_DiaChi.TabIndex = 59;
             this.lb_DiaChi.Text = "Địa chỉ:";
             // 
@@ -1020,7 +857,7 @@ namespace QLSanBong
             this.lb_TenKH.Location = new System.Drawing.Point(73, 252);
             this.lb_TenKH.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_TenKH.Name = "lb_TenKH";
-            this.lb_TenKH.Size = new System.Drawing.Size(137, 20);
+            this.lb_TenKH.Size = new System.Drawing.Size(140, 21);
             this.lb_TenKH.TabIndex = 58;
             this.lb_TenKH.Text = "Tên Khách Hàng:";
             // 
@@ -1031,34 +868,6 @@ namespace QLSanBong
             this.txt_TenKH.Name = "txt_TenKH";
             this.txt_TenKH.Size = new System.Drawing.Size(209, 28);
             this.txt_TenKH.TabIndex = 56;
-            // 
-            // btnThemKH
-            // 
-            this.btnThemKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemKH.Image = ((System.Drawing.Image)(resources.GetObject("btnThemKH.Image")));
-            this.btnThemKH.Location = new System.Drawing.Point(77, 409);
-            this.btnThemKH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnThemKH.Name = "btnThemKH";
-            this.btnThemKH.Size = new System.Drawing.Size(133, 69);
-            this.btnThemKH.TabIndex = 46;
-            this.btnThemKH.Text = "Thêm";
-            this.btnThemKH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThemKH.UseVisualStyleBackColor = true;
-            this.btnThemKH.Click += new System.EventHandler(this.btnThemKH_Click);
-            // 
-            // btnSuaKH
-            // 
-            this.btnSuaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSuaKH.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaKH.Image")));
-            this.btnSuaKH.Location = new System.Drawing.Point(297, 409);
-            this.btnSuaKH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSuaKH.Name = "btnSuaKH";
-            this.btnSuaKH.Size = new System.Drawing.Size(133, 69);
-            this.btnSuaKH.TabIndex = 45;
-            this.btnSuaKH.Text = "Sửa";
-            this.btnSuaKH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSuaKH.UseVisualStyleBackColor = true;
-            this.btnSuaKH.Click += new System.EventHandler(this.btnSuaKH_Click);
             // 
             // groupBox9
             // 
@@ -1085,21 +894,6 @@ namespace QLSanBong
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Tìm kiếm";
             // 
-            // btn_timkiem
-            // 
-            this.btn_timkiem.BackColor = System.Drawing.Color.White;
-            this.btn_timkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_timkiem.Image = ((System.Drawing.Image)(resources.GetObject("btn_timkiem.Image")));
-            this.btn_timkiem.Location = new System.Drawing.Point(469, 11);
-            this.btn_timkiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_timkiem.Name = "btn_timkiem";
-            this.btn_timkiem.Size = new System.Drawing.Size(187, 54);
-            this.btn_timkiem.TabIndex = 15;
-            this.btn_timkiem.Text = "Tìm kiếm";
-            this.btn_timkiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_timkiem.UseVisualStyleBackColor = false;
-            this.btn_timkiem.Click += new System.EventHandler(this.btn_timkiem_Click);
-            // 
             // txt_tkTenKH
             // 
             this.txt_tkTenKH.Location = new System.Drawing.Point(227, 21);
@@ -1113,7 +907,7 @@ namespace QLSanBong
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(44, 28);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(125, 20);
+            this.label16.Size = new System.Drawing.Size(128, 21);
             this.label16.TabIndex = 0;
             this.label16.Text = "Tên khách hàng";
             // 
@@ -1150,6 +944,207 @@ namespace QLSanBong
             this.txt_TongGio.Size = new System.Drawing.Size(100, 22);
             this.txt_TongGio.TabIndex = 47;
             // 
+            // btn_TKNam
+            // 
+            this.btn_TKNam.BackColor = System.Drawing.Color.White;
+            this.btn_TKNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TKNam.Image = ((System.Drawing.Image)(resources.GetObject("btn_TKNam.Image")));
+            this.btn_TKNam.Location = new System.Drawing.Point(244, 27);
+            this.btn_TKNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_TKNam.Name = "btn_TKNam";
+            this.btn_TKNam.Size = new System.Drawing.Size(204, 53);
+            this.btn_TKNam.TabIndex = 13;
+            this.btn_TKNam.Text = "Thống kê năm";
+            this.btn_TKNam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_TKNam.UseVisualStyleBackColor = false;
+            this.btn_TKNam.Click += new System.EventHandler(this.btn_TKNam_Click);
+            // 
+            // btnTKThang
+            // 
+            this.btnTKThang.BackColor = System.Drawing.Color.White;
+            this.btnTKThang.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTKThang.Image = ((System.Drawing.Image)(resources.GetObject("btnTKThang.Image")));
+            this.btnTKThang.Location = new System.Drawing.Point(379, 27);
+            this.btnTKThang.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTKThang.Name = "btnTKThang";
+            this.btnTKThang.Size = new System.Drawing.Size(204, 53);
+            this.btnTKThang.TabIndex = 13;
+            this.btnTKThang.Text = "Thống kê tháng";
+            this.btnTKThang.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTKThang.UseVisualStyleBackColor = false;
+            this.btnTKThang.Click += new System.EventHandler(this.btnTKThang_Click);
+            // 
+            // btnThemDV
+            // 
+            this.btnThemDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemDV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemDV.Image")));
+            this.btnThemDV.Location = new System.Drawing.Point(29, 417);
+            this.btnThemDV.Name = "btnThemDV";
+            this.btnThemDV.Size = new System.Drawing.Size(134, 69);
+            this.btnThemDV.TabIndex = 46;
+            this.btnThemDV.Text = "Thêm";
+            this.btnThemDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThemDV.UseVisualStyleBackColor = true;
+            this.btnThemDV.Click += new System.EventHandler(this.btnThemDV_Click);
+            // 
+            // btnSuaDV
+            // 
+            this.btnSuaDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuaDV.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaDV.Image")));
+            this.btnSuaDV.Location = new System.Drawing.Point(349, 417);
+            this.btnSuaDV.Name = "btnSuaDV";
+            this.btnSuaDV.Size = new System.Drawing.Size(134, 69);
+            this.btnSuaDV.TabIndex = 45;
+            this.btnSuaDV.Text = "Sửa";
+            this.btnSuaDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSuaDV.UseVisualStyleBackColor = true;
+            this.btnSuaDV.Click += new System.EventHandler(this.btnSuaDV_Click);
+            // 
+            // btnXoaDV
+            // 
+            this.btnXoaDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaDV.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaDV.Image")));
+            this.btnXoaDV.Location = new System.Drawing.Point(187, 417);
+            this.btnXoaDV.Name = "btnXoaDV";
+            this.btnXoaDV.Size = new System.Drawing.Size(134, 69);
+            this.btnXoaDV.TabIndex = 44;
+            this.btnXoaDV.Text = "Xóa";
+            this.btnXoaDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaDV.UseVisualStyleBackColor = true;
+            this.btnXoaDV.Click += new System.EventHandler(this.btnXoaDV_Click);
+            // 
+            // btn_timDV
+            // 
+            this.btn_timDV.BackColor = System.Drawing.Color.White;
+            this.btn_timDV.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_timDV.Image = ((System.Drawing.Image)(resources.GetObject("btn_timDV.Image")));
+            this.btn_timDV.Location = new System.Drawing.Point(463, 11);
+            this.btn_timDV.Name = "btn_timDV";
+            this.btn_timDV.Size = new System.Drawing.Size(187, 54);
+            this.btn_timDV.TabIndex = 15;
+            this.btn_timDV.Text = "Tìm kiếm";
+            this.btn_timDV.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_timDV.UseVisualStyleBackColor = false;
+            this.btn_timDV.Click += new System.EventHandler(this.btn_timDV_Click);
+            // 
+            // btn_SuaHD
+            // 
+            this.btn_SuaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_SuaHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaHD.Image")));
+            this.btn_SuaHD.Location = new System.Drawing.Point(997, 126);
+            this.btn_SuaHD.Name = "btn_SuaHD";
+            this.btn_SuaHD.Size = new System.Drawing.Size(131, 70);
+            this.btn_SuaHD.TabIndex = 43;
+            this.btn_SuaHD.Text = "Sửa";
+            this.btn_SuaHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_SuaHD.UseVisualStyleBackColor = true;
+            this.btn_SuaHD.Click += new System.EventHandler(this.btn_SuaHD_Click);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
+            this.btnXoa.Location = new System.Drawing.Point(997, 53);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(131, 62);
+            this.btnXoa.TabIndex = 42;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btn_ThemCTHD
+            // 
+            this.btn_ThemCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ThemCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemCTHD.Image")));
+            this.btn_ThemCTHD.Location = new System.Drawing.Point(519, 72);
+            this.btn_ThemCTHD.Name = "btn_ThemCTHD";
+            this.btn_ThemCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_ThemCTHD.TabIndex = 49;
+            this.btn_ThemCTHD.Text = "Thêm";
+            this.btn_ThemCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ThemCTHD.UseVisualStyleBackColor = true;
+            this.btn_ThemCTHD.Click += new System.EventHandler(this.btn_ThemCTHD_Click);
+            // 
+            // btn_SuaCTHD
+            // 
+            this.btn_SuaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_SuaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaCTHD.Image")));
+            this.btn_SuaCTHD.Location = new System.Drawing.Point(839, 72);
+            this.btn_SuaCTHD.Name = "btn_SuaCTHD";
+            this.btn_SuaCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_SuaCTHD.TabIndex = 48;
+            this.btn_SuaCTHD.Text = "Sửa";
+            this.btn_SuaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_SuaCTHD.UseVisualStyleBackColor = true;
+            this.btn_SuaCTHD.Click += new System.EventHandler(this.btn_SuaCTHD_Click);
+            // 
+            // btn_XoaCTHD
+            // 
+            this.btn_XoaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_XoaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XoaCTHD.Image")));
+            this.btn_XoaCTHD.Location = new System.Drawing.Point(677, 72);
+            this.btn_XoaCTHD.Name = "btn_XoaCTHD";
+            this.btn_XoaCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_XoaCTHD.TabIndex = 47;
+            this.btn_XoaCTHD.Text = "Xóa";
+            this.btn_XoaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_XoaCTHD.UseVisualStyleBackColor = true;
+            this.btn_XoaCTHD.Click += new System.EventHandler(this.btn_XoaCTHD_Click);
+            // 
+            // btnThemKH
+            // 
+            this.btnThemKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemKH.Image = ((System.Drawing.Image)(resources.GetObject("btnThemKH.Image")));
+            this.btnThemKH.Location = new System.Drawing.Point(77, 409);
+            this.btnThemKH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnThemKH.Name = "btnThemKH";
+            this.btnThemKH.Size = new System.Drawing.Size(133, 69);
+            this.btnThemKH.TabIndex = 46;
+            this.btnThemKH.Text = "Thêm";
+            this.btnThemKH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThemKH.UseVisualStyleBackColor = true;
+            this.btnThemKH.Click += new System.EventHandler(this.btnThemKH_Click);
+            // 
+            // btnSuaKH
+            // 
+            this.btnSuaKH.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSuaKH.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaKH.Image")));
+            this.btnSuaKH.Location = new System.Drawing.Point(297, 409);
+            this.btnSuaKH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnSuaKH.Name = "btnSuaKH";
+            this.btnSuaKH.Size = new System.Drawing.Size(133, 69);
+            this.btnSuaKH.TabIndex = 45;
+            this.btnSuaKH.Text = "Sửa";
+            this.btnSuaKH.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSuaKH.UseVisualStyleBackColor = true;
+            this.btnSuaKH.Click += new System.EventHandler(this.btnSuaKH_Click);
+            // 
+            // btn_timkiem
+            // 
+            this.btn_timkiem.BackColor = System.Drawing.Color.White;
+            this.btn_timkiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_timkiem.Image = ((System.Drawing.Image)(resources.GetObject("btn_timkiem.Image")));
+            this.btn_timkiem.Location = new System.Drawing.Point(469, 11);
+            this.btn_timkiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_timkiem.Name = "btn_timkiem";
+            this.btn_timkiem.Size = new System.Drawing.Size(187, 54);
+            this.btn_timkiem.TabIndex = 15;
+            this.btn_timkiem.Text = "Tìm kiếm";
+            this.btn_timkiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_timkiem.UseVisualStyleBackColor = false;
+            this.btn_timkiem.Click += new System.EventHandler(this.btn_timkiem_Click);
+            // 
+            // reportViewer1
+            // 
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "QLSanBong.ReportDoanhThu.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(29, 141);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(1196, 478);
+            this.reportViewer1.TabIndex = 10;
+            // 
             // FormQuanLyKinhDoanh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1159,13 +1154,13 @@ namespace QLSanBong
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormQuanLyKinhDoanh";
             this.Text = "FormQuanLyKinhDoanh";
+            this.Load += new System.EventHandler(this.FormQuanLyKinhDoanh_Load);
             this.tab_QLKinhDoanh.ResumeLayout(false);
             this.tab_QLDoanhThu.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Doanhthu)).EndInit();
             this.groupBox_TimKiemSan.ResumeLayout(false);
             this.groupBox_TimKiemSan.PerformLayout();
             this.tab_QLDichVu.ResumeLayout(false);
@@ -1230,7 +1225,6 @@ namespace QLSanBong
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btn_TKNam;
         private System.Windows.Forms.ComboBox cbo_Nam;
-        private System.Windows.Forms.DataGridView dgv_Doanhthu;
         private System.Windows.Forms.GroupBox groupBox_TimKiemSan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
@@ -1282,5 +1276,6 @@ namespace QLSanBong
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label8;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

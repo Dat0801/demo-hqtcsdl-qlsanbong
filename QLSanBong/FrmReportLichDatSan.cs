@@ -23,7 +23,7 @@ namespace QLSanBong
         private void FrmReportLichDatSan_Load(object sender, EventArgs e)
         {
             List<LichDatSan> listLDS = LichDatSanDAO.Instance.LoadListLoaiSan();
-            reportViewer2.LocalReport.ReportPath = "Report1.rdlc";
+            reportViewer2.LocalReport.ReportPath = "ReportLDS.rdlc";
             var source = new ReportDataSource("LichDatSanDataSet", listLDS);
             reportViewer2.LocalReport.DataSources.Clear();
             reportViewer2.LocalReport.DataSources.Add(source);
