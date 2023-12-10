@@ -207,5 +207,11 @@ namespace QLSanBong
         {
             btn_TraSan_Click(sender,e);
         }
+
+        private void btnXuatReport_Click(object sender, EventArgs e)
+        {
+            FrmReportLichDatSan frmReport = new FrmReportLichDatSan();
+            frmReport.ShowDialog();
+        }
     }
 }

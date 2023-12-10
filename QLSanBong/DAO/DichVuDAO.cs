@@ -52,13 +52,13 @@ namespace QLSanBong.DAO
         }
         public int XoaDichVu(string tenDV)
         {
-            string query = "SP_XoaDV1 @TenDV";
+            string query = "SP_XoaDV @TenDV";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenDV });
             return result;
         }
         public int SuaDicVu(int maDV, string tenDV, int dongia)
         {
-            string query = "SP_SuaDichVu1 @MaDV , @TenDV , @Gia";
+            string query = "SP_SuaDichVu @MaDV , @TenDV , @Gia";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { maDV, tenDV, dongia });
             return result;
         }

@@ -65,19 +65,9 @@ namespace QLSanBong.DAO
         }
         public int SuaCTHD(int maHD, int maDV, int soLuongMoi)
         {
-                int resultXoa = XoaCTHD(maHD, maDV);
-                if (resultXoa > 0)
-                {
-                    // Nếu xóa thành công, thêm chi tiết hóa đơn mới với số lượng mới
-                    int resultThem = ThemCTHD(maHD, maDV, soLuongMoi);
-
-                    return resultThem;
-                }
-                else
-                {
-                    return resultXoa;
-                }
-            
+            string query = "update CHITIETHD set SoLuong = '"+ soLuongMoi +"' where MaHD = '" + maHD + "' AND MaDV = '" + maDV + "'";
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result;
         }
         
     }
