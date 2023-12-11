@@ -1,9 +1,12 @@
-﻿CREATE DATABASE QLSANBONG
+﻿--1. 2001215707, Nguyễn Từ Thành Đạt, Lớp 12DHTH03
+--2. 2001210341, Võ Nhất Bảo, Lớp 12DHTH15
+--3. 2001210210, Lê Ngọc Đình Trí, Lớp 12DHTH18
+CREATE DATABASE QLSANBONG
 GO
 
 USE QLSANBONG
 GO
-
+-- Bảo
 CREATE TABLE ACCOUNT
 (
 	UserName VARCHAR(100) NOT NULL,
@@ -12,7 +15,7 @@ CREATE TABLE ACCOUNT
 	Role INT DEFAULT 0,
 	CONSTRAINT PK_ACCOUNT PRIMARY KEY (UserName)
 )
-
+-- Đạt
 CREATE TABLE LOAISAN
 (
 	MaLoai INT IDENTITY(1,1) NOT NULL,
@@ -20,7 +23,7 @@ CREATE TABLE LOAISAN
 	GiaThue decimal DEFAULT 100000,
 	CONSTRAINT PK_LOAISAN PRIMARY KEY (MaLoai)
 )
-
+-- Đạt
 CREATE TABLE SANBONG 
 (
 	MaSan INT IDENTITY(1,1) NOT NULL,
@@ -29,7 +32,7 @@ CREATE TABLE SANBONG
 	CONSTRAINT PK_SANBONG PRIMARY KEY (MaSan),
 	CONSTRAINT FK_SANBONG_LOAISAN FOREIGN KEY (MaLoai) REFERENCES LOAISAN(MaLoai)
 )
-
+-- Bảo
 CREATE TABLE KHACHHANG
 (
 	MaKH INT IDENTITY(1,1) NOT NULL,
@@ -38,7 +41,7 @@ CREATE TABLE KHACHHANG
 	SDT VARCHAR(10) NOT NULL,
 	CONSTRAINT PK_KHACHHANG PRIMARY KEY (MaKH)
 )
-
+-- Đạt
 CREATE TABLE LICHDATSAN
 (
 	MaLich INT IDENTITY(1,1) NOT NULL,
@@ -51,7 +54,7 @@ CREATE TABLE LICHDATSAN
 	CONSTRAINT FK_LICHDATSAN_KHACHHANG FOREIGN KEY (MaKH) REFERENCES KHACHHANG(MaKH),
 	CONSTRAINT FK_LICHDATSAN_SANBONG FOREIGN KEY (MaSan) REFERENCES SANBONG(MaSan)
 )
-
+-- Trí
 CREATE TABLE HOADON 
 (
 	MaHD INT IDENTITY(1,1) NOT NULL,
@@ -65,7 +68,7 @@ CREATE TABLE HOADON
 	CONSTRAINT FK_HOADON_SANBONG FOREIGN KEY (MaSan) REFERENCES SANBONG(MaSan),
 	CONSTRAINT FK_HOADON_KHACHHANG FOREIGN KEY (MaKH) REFERENCES KHACHHANG(MaKH)
 )
-
+-- Bảo
 CREATE TABLE DICHVU
 (
 	MaDV INT IDENTITY(1,1) NOT NULL,
@@ -73,6 +76,7 @@ CREATE TABLE DICHVU
 	DonGia INT DEFAULT 10000,
 	CONSTRAINT PK_DICHVU PRIMARY KEY (MaDV)
 )
+-- Trí
 
 CREATE TABLE CHITIETHD
 (
@@ -84,6 +88,7 @@ CREATE TABLE CHITIETHD
 	CONSTRAINT PK_CHITIETHD_DICHVU FOREIGN KEY (MaDV) REFERENCES DICHVU(MaDV)
 )
 
+-- Đạt
 -- cập nhật lại thành tiền của lịch đặt sân khi thay đổi giá thuê của loại sân
 GO
 CREATE TRIGGER UpdateTotalLoaiSan
@@ -98,7 +103,7 @@ BEGIN
 	AND LICHDATSAN.MASAN = SANBONG.MASAN
 END
 GO
-
+-- Đạt
 -- cập nhật thành tiền của lịch đặt sân khi đặt
 GO
 CREATE TRIGGER InsertTotalLichDatSan
@@ -114,6 +119,7 @@ BEGIN
 	AND LICHDATSAN.MASAN = i.MaSan
 END
 GO
+-- Đạt
 
 GO
 CREATE TRIGGER UpdateTotalLichDatSan
@@ -129,6 +135,7 @@ BEGIN
 	AND LICHDATSAN.MASAN = i.MaSan
 END
 GO
+-- Đạt
 
 CREATE TRIGGER DeleteTotalLichDatSan
 ON LICHDATSAN
@@ -153,6 +160,7 @@ BEGIN
 END
 GO
 
+-- Bảo
 -- Cập nhật tổng tiền của hóa đơn khi thay đổi giá của dịch vụ
 GO
 CREATE TRIGGER UpdateTotalDichVu
@@ -160,17 +168,19 @@ ON DICHVU
 AFTER UPDATE
 AS
 BEGIN
-	DECLARE @DONGIA INT
+	DECLARE @DONGIA decimal, @DonGiaCu decimal
 	SET @DONGIA = (SELECT DONGIA FROM inserted)
+	SET @DonGiaCu = (SELECT DONGIA FROM deleted)
 
     UPDATE HOADON
-    SET TONGTIEN = TONGTIEN + @DONGIA * SOLUONG
-    FROM LICHDATSAN, CHITIETHD, HOADON
+    SET TONGTIEN = (TONGTIEN - @DonGiaCu * SOLUONG) + @DONGIA * SoLuong
+    FROM CHITIETHD, HOADON, DICHVU
     WHERE (SELECT MADV FROM inserted) = CHITIETHD.MADV
 	AND HOADON.MAHD = CHITIETHD.MAHD
 END
 GO
 
+-- Trí
 -- Cập nhật tổng tiền của hóa đơn khi thay đổi số lượng trong chi tiết hóa đơn
 GO
 CREATE TRIGGER InsertTotalChiTietHD
@@ -189,6 +199,7 @@ BEGIN
 END
 GO
 
+-- Trí
 GO
 CREATE TRIGGER UpdateTotalChiTietHD
 ON CHITIETHD
@@ -215,20 +226,20 @@ BEGIN
 	END
 END
 GO
-
+--Bảo
 INSERT INTO ACCOUNT
 VALUES ('admin1', '123456', N'Đạt', 1),
 ('admin2', 'admin123', N'Tài', 1),
 ('admin3', 'admin123456', N'Tú', 1),
 ('nhanvien1', 'nhanvien123', N'Bảo', 0),
 ('nhanvien2', 'nhanvien123456', N'Trí', 0)
-
+-- Đạt
 INSERT INTO LOAISAN
 VALUES (N'Sân 5 Người', '100000'),
 (N'Sân 7 Người', '300000'),
 (N'Sân 9 Người', '500000'),
 (N'Sân 11 Người', '1000000')
-
+-- Đạt
 INSERT INTO SANBONG
 VALUES (N'Sân 5 - 1', 1),
 (N'Sân 5 - 2', 1),
@@ -242,7 +253,7 @@ VALUES (N'Sân 5 - 1', 1),
 (N'Sân 11 - 1', 4),
 (N'Sân 11 - 2', 4),
 (N'Sân 11 - 3', 4)
-
+-- Bảo
 INSERT INTO KHACHHANG
 VALUES (N'Nguyễn Văn An', N'Quận 1 TP.HCM', '0399127841'),
 (N'Trần Văn Khánh', N'Quận Bình Tân TP.HCM', '0392127321'),
@@ -250,7 +261,7 @@ VALUES (N'Nguyễn Văn An', N'Quận 1 TP.HCM', '0399127841'),
 (N'Nguyễn Trường Giang', N'Quận 2 TP.HCM', '0219127513'),
 (N'Đinh Văn Quế', N'Quận 3 TP.HCM', '0339127333'),
 (N'Bùi Văn Bường', N'Quận 4 TP.HCM', '0333127666')
-
+-- Đạt
 INSERT INTO LICHDATSAN (THOIGIANBD, THOIGIANKT, MAKH, MASAN)
 VALUES ('11-20-2023 16:00', '11-20-2023 18:00', 1, 1)
 
@@ -268,7 +279,7 @@ VALUES('11-17-2023 13:00', '11-17-2023 18:00', 5, 2)
 
 INSERT INTO LICHDATSAN (THOIGIANBD, THOIGIANKT, MAKH, MASAN)
 VALUES('11-20-2023 15:00', '11-20-2023 17:00', 6, 11)
-
+-- Trí
 INSERT INTO HOADON
 VALUES ('11-20-2023 15:00',1,1,120,100000, 200000)
 
@@ -277,7 +288,7 @@ VALUES('10-20-2023 18:00',2,2,180,100000, 300000)
 
 INSERT INTO HOADON
 VALUES('12-10-2023 21:00',3,3,120,100000, 200000)
-
+-- Bảo
 INSERT INTO DICHVU
 VALUES (N'Nước uống Sting', 10000),
 (N'Nước uống Olong', 10000),
@@ -285,7 +296,7 @@ VALUES (N'Nước uống Sting', 10000),
 (N'Cơm gà xối mỡ', 30000),
 (N'Cơm tấm', 30000),
 (N'Hủ tiếu', 30000)
-
+-- Trí
 INSERT INTO CHITIETHD
 VALUES (1, 1, 5)
 
@@ -295,6 +306,7 @@ VALUES(2, 2, 7)
 INSERT INTO CHITIETHD
 VALUES(3, 3, 11)
 
+-- Đạt
 -- Stored Procedures Login
 GO
 CREATE PROC SP_Login
@@ -458,6 +470,7 @@ BEGIN
 END
 GO
 
+-- Bảo
 -- Stored Procedures SP_GetListLoaiSan
 GO
 CREATE PROC SP_GetListDichVu
@@ -505,8 +518,19 @@ BEGIN
 	SET TenDV = @TenDV, DonGia = @Gia
 	WHERE DICHVU.MaDV = @MaDV
 END
+
+--Stored Procedures SP_TimDV
+GO
+CREATE PROC SP_TimDV
+@TenDv nvarchar(100)
+AS
+BEGIN
+	SELECT * FROM DICHVU
+	WHERE TenDV LIKE '%' + @TenDV + '%';
+END
 GO
 
+-- Trí
 -- Stored Procedures SP_GetListHoaDon
 GO
 CREATE PROC SP_GetListHoaDon
@@ -560,21 +584,6 @@ BEGIN
     SELECT @CanEdit AS CanEdit;
 END
 
---đoạn sửa đổi thêm
-
-
-
---Stored Procedures SP_TimDV
-GO
-CREATE PROC SP_TimDV
-@TenDv nvarchar(100)
-AS
-BEGIN
-	SELECT * FROM DICHVU
-	WHERE TenDV LIKE '%' + @TenDV + '%';
-END
-GO
-
 GO
 CREATE PROC SP_GetListCTHoaDon
 AS
@@ -595,6 +604,7 @@ BEGIN
 
 END
 
+-- Bảo
 --Stored Procedures KHACHHANG
 --Stored Procedures Tìm kiếm khách hàng
 GO

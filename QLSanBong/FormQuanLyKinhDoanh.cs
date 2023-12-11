@@ -175,7 +175,7 @@ namespace QLSanBong
                 MessageBox.Show("Sua thanh cong");
             }
             loaddicvu();
-
+            loadHoaDon();
         }
         private void loadHoaDon()
         {

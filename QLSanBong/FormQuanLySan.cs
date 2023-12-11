@@ -30,10 +30,11 @@ namespace QLSanBong
         private void btn_ThemSan_Click(object sender, EventArgs e)
         {
             string tenSan = txtTenSan.Text;
-            if(tenSan == "")
+            if (tenSan == "")
             {
                 MessageBox.Show("Vui lòng nhập tên sân!");
-            } else
+            }
+            else
             {
                 string maLoai = cbo_LoaiSan.SelectedValue.ToString();
                 if (KiemTraTrungTenSan(tenSan))
@@ -82,7 +83,7 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn sân muốn xóa!");
             }
-            if(maSan != 0)
+            if (maSan != 0)
             {
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa sân?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -102,20 +103,25 @@ namespace QLSanBong
                     {
                         if (maSan == item.MaSan)
                         {
-                            flag = 1;
+                            flag = 2;
                         }
                     }
                     if (flag == 1)
                     {
-                        MessageBox.Show("Sân không thể xóa do đang có quản lý khác tham chiếu!");
-                    } else
+                        MessageBox.Show("Sân không thể xóa do đang có quản lý lịch đặt sân tham chiếu!");
+                    }
+                    else if (flag == 2)
+                    {
+                        MessageBox.Show("Sân không thể xóa do đang có quản lý đơn hàng tham chiếu!");
+                    }
+                    else
                     {
                         SanDAO.Instance.XoaSan(maSan);
                         txtMaSan.Clear();
                         txtTenSan.Clear();
                         cbo_LoaiSan.SelectedIndex = 0;
                     }
-                    
+
                 }
             }
             loadSan();
@@ -132,7 +138,7 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn sân muốn sửa!");
             }
-            if(maSan != 0)
+            if (maSan != 0)
             {
                 string tenSan = txtTenSan.Text;
                 int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
@@ -159,12 +165,13 @@ namespace QLSanBong
 
         private void btnThemLoaiSan_Click(object sender, EventArgs e)
         {
-            
+
             string tenLoai = txtTenLoai.Text;
-            if(tenLoai == "")
+            if (tenLoai == "")
             {
                 MessageBox.Show("Vui lòng nhập tên loại!");
-            } else
+            }
+            else
             {
                 double giaThue = 0;
                 try
@@ -175,7 +182,7 @@ namespace QLSanBong
                 {
                     MessageBox.Show("Vui lòng nhập giá thuê!");
                 }
-                if(giaThue != 0)
+                if (giaThue != 0)
                 {
                     if (KiemTraTrungTenLoai(tenLoai))
                         MessageBox.Show("Tên loại sân đã tồn tại!");
@@ -186,7 +193,7 @@ namespace QLSanBong
                     txtGiaThue.Clear();
                 }
             }
-            
+
             loadLoaiSan();
         }
 
@@ -206,7 +213,7 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn loại sân muốn xóa!");
             }
-            if(maLoai != 0)
+            if (maLoai != 0)
             {
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn xóa loại sân này?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
@@ -223,7 +230,7 @@ namespace QLSanBong
                     }
                     if (flag == 1)
                     {
-                        MessageBox.Show("Loại sân không thể xóa do đang có quản lý khác tham chiếu!");
+                        MessageBox.Show("Loại sân không thể xóa do đang có quản lý sân tham chiếu!");
                     }
                     else
                     {
@@ -232,9 +239,9 @@ namespace QLSanBong
                         txtTenLoai.Clear();
                         txtGiaThue.Clear();
                     }
-                        
+
                 }
-                
+
             }
             loadLoaiSan();
         }
@@ -250,7 +257,7 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn loại sân muốn sửa!");
             }
-            if(maLoai != 0)
+            if (maLoai != 0)
             {
                 string tenLoai = txtTenLoai.Text;
                 double giaThue = double.Parse(txtGiaThue.Text);
@@ -286,7 +293,7 @@ namespace QLSanBong
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(txtMaSan.Text != "")
+            if (txtMaSan.Text != "")
                 btn_XoaSan_Click(sender, e);
             else
                 btnXoaLoaiSan_Click(sender, e);
