@@ -62,30 +62,29 @@ namespace QLSanBong
             string tenDV = txt_tenDV.Text;
             if (tenDV == "")
             {
-                MessageBox.Show("Vui lòng nhập tên loại!");
+                MessageBox.Show("Vui lòng nhập tên dịch vụ!");
             }
             else
             {
-                int giaDV = 0;
                 try
                 {
-                    giaDV = int.Parse(txt_dongiaDV.Text);
+                    int giaDV = int.Parse(txt_dongiaDV.Text);
+                    if (giaDV <= 0)
+                        MessageBox.Show("Nhập giá lớn hơn 0!");
+                    else if (KiemTraTrungTenDV(tenDV))
+                        MessageBox.Show("Dịch vụ đã tồn tại!");
+                    else
+                    {
+                        DichVuDAO.Instance.ThemDV(tenDV, giaDV);
+                        txt_dongiaDV.Clear();
+                        txt_tenDV.Clear();
+                    }
+
                 }
                 catch
                 {
                     MessageBox.Show("Vui lòng nhập giá");
                 }
-                if (giaDV != 0)
-                {
-                    if (KiemTraTrungTenDV(tenDV))
-                        MessageBox.Show("Dịch vụ đã tồn tại!");
-                    else
-                        DichVuDAO.Instance.ThemDV(tenDV, giaDV);
-                    txt_dongiaDV.Clear();
-                    txt_tenDV.Clear();
-
-                }
-
             }
             loaddicvu();
         }
@@ -137,7 +136,7 @@ namespace QLSanBong
 
                 }
             }
-            catch 
+            catch
             {
                 int maDV = int.Parse(cbo_MaDV.SelectedValue.ToString());
                 int maHD = int.Parse(cbo_MaHD.SelectedValue.ToString());
@@ -157,23 +156,36 @@ namespace QLSanBong
 
         private void btnSuaDV_Click(object sender, EventArgs e)
         {
-            int maDV = 0;
             try
             {
-                maDV = int.Parse(txt_MaDV.Text);
-
+                int maDV = int.Parse(txt_MaDV.Text);
+                string tenDV = txt_tenDV.Text;
+                if (tenDV == "")
+                    MessageBox.Show("Vui lòng nhập tên dịch vụ!");
+                else
+                {
+                    try
+                    {
+                        int gia = int.Parse(txt_dongiaDV.Text);
+                        if (gia <= 0)
+                            MessageBox.Show("Vui lòng nhập giá lớn hơn 0!");
+                        else
+                        {
+                            DichVuDAO.Instance.SuaDicVu(maDV, tenDV, gia);
+                            MessageBox.Show("Sửa thành công");
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng nhập giá!");
+                    }
+                }
             }
             catch
             {
-                MessageBox.Show("Vui lòng chọn sân muốn sửa!");
+                MessageBox.Show("Vui lòng chọn dịch vụ muốn sửa!");
             }
-            if (maDV != 0)
-            {
-                string tenDV = txt_tenDV.Text;
-                int gia = int.Parse(txt_dongiaDV.Text);
-                DichVuDAO.Instance.SuaDicVu(maDV, tenDV, gia);
-                MessageBox.Show("Sua thanh cong");
-            }
+            
             loaddicvu();
             loadHoaDon();
         }
@@ -493,7 +505,7 @@ namespace QLSanBong
             }
             loadHoaDon();
         }
- 
+
         private void btn_SuaCTHD_Click(object sender, EventArgs e)
         {
             int maHD = 0;

@@ -129,21 +129,23 @@ namespace QLSanBong
 
         private void btn_SuaSan_Click(object sender, EventArgs e)
         {
-            int maSan = 0;
             try
             {
-                maSan = int.Parse(txtMaSan.Text);
+                int maSan = int.Parse(txtMaSan.Text);
+                string tenSan = txtTenSan.Text;
+                if (tenSan == "")
+                    MessageBox.Show("Vui lòng nhập tên sân!");
+                else
+                {
+                    int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
+                    SanDAO.Instance.SuaSan(maSan, tenSan, maLoai);
+                }
             }
             catch
             {
                 MessageBox.Show("Vui lòng chọn sân muốn sửa!");
             }
-            if (maSan != 0)
-            {
-                string tenSan = txtTenSan.Text;
-                int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
-                SanDAO.Instance.SuaSan(maSan, tenSan, maLoai);
-            }
+            
             loadSan();
         }
 
@@ -165,7 +167,6 @@ namespace QLSanBong
 
         private void btnThemLoaiSan_Click(object sender, EventArgs e)
         {
-
             string tenLoai = txtTenLoai.Text;
             if (tenLoai == "")
             {
@@ -173,24 +174,28 @@ namespace QLSanBong
             }
             else
             {
-                double giaThue = 0;
                 try
                 {
-                    giaThue = double.Parse(txtGiaThue.Text);
+                    double giaThue = double.Parse(txtGiaThue.Text);
+                    if (giaThue <= 0)
+                    {
+                        MessageBox.Show("Vui lòng nhập giá thuê lớn hơn 0!");
+                    }
+                    else if (KiemTraTrungTenLoai(tenLoai))
+                    {
+                        MessageBox.Show("Tên loại sân đã tồn tại!");
+                    }
+                    else
+                    {
+                        LoaiSanDAO.Instance.ThemLoaiSan(tenLoai, giaThue);
+                        txtMaLoai.Clear();
+                        txtTenLoai.Clear();
+                        txtGiaThue.Clear();
+                    }
                 }
                 catch
                 {
                     MessageBox.Show("Vui lòng nhập giá thuê!");
-                }
-                if (giaThue != 0)
-                {
-                    if (KiemTraTrungTenLoai(tenLoai))
-                        MessageBox.Show("Tên loại sân đã tồn tại!");
-                    else
-                        LoaiSanDAO.Instance.ThemLoaiSan(tenLoai, giaThue);
-                    txtMaLoai.Clear();
-                    txtTenLoai.Clear();
-                    txtGiaThue.Clear();
                 }
             }
 
@@ -248,20 +253,34 @@ namespace QLSanBong
 
         private void btnSuaLoaiSan_Click(object sender, EventArgs e)
         {
-            int maLoai = 0;
             try
             {
-                maLoai = int.Parse(txtMaLoai.Text);
+                int maLoai = int.Parse(txtMaLoai.Text);
+                string tenLoai = txtTenLoai.Text;
+                if (tenLoai == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên loại!");
+                }
+                else
+                {
+                    try
+                    {
+                        double giaThue = double.Parse(txtGiaThue.Text);
+                        if (giaThue <= 0)
+                            MessageBox.Show("Vui lòng nhập giá thuê lớn hơn 0!");
+                        else
+                            LoaiSanDAO.Instance.SuaLoaiSan(maLoai, tenLoai, giaThue);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng nhập giá thuê!");
+                    }
+
+                }
             }
             catch
             {
                 MessageBox.Show("Vui lòng chọn loại sân muốn sửa!");
-            }
-            if (maLoai != 0)
-            {
-                string tenLoai = txtTenLoai.Text;
-                double giaThue = double.Parse(txtGiaThue.Text);
-                LoaiSanDAO.Instance.SuaLoaiSan(maLoai, tenLoai, giaThue);
             }
             loadLoaiSan();
         }

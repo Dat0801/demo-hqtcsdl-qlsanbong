@@ -12,7 +12,7 @@ CREATE TABLE ACCOUNT
 	UserName VARCHAR(100) NOT NULL,
 	Password VARCHAR(15) NOT NULL,
 	DisplayName NVARCHAR(100) NOT NULL,
-	Role INT DEFAULT 0,
+	Role INT CHECK(Role >= 0) DEFAULT 0,
 	CONSTRAINT PK_ACCOUNT PRIMARY KEY (UserName)
 )
 -- Đạt
@@ -20,7 +20,7 @@ CREATE TABLE LOAISAN
 (
 	MaLoai INT IDENTITY(1,1) NOT NULL,
 	TenLoai NVARCHAR(100) NOT NULL,
-	GiaThue decimal DEFAULT 100000,
+	GiaThue decimal CHECK(GiaThue > 0) DEFAULT 100000,
 	CONSTRAINT PK_LOAISAN PRIMARY KEY (MaLoai)
 )
 -- Đạt
@@ -38,7 +38,7 @@ CREATE TABLE KHACHHANG
 	MaKH INT IDENTITY(1,1) NOT NULL,
 	TenKH NVARCHAR(100) NOT NULL,
 	DiaChi NVARCHAR(50) DEFAULT N'Chưa xác định',
-	SDT VARCHAR(10) NOT NULL,
+	SDT VARCHAR(10) NOT NULL UNIQUE,
 	CONSTRAINT PK_KHACHHANG PRIMARY KEY (MaKH)
 )
 -- Đạt
@@ -49,7 +49,7 @@ CREATE TABLE LICHDATSAN
 	ThoiGianKT DATETIME NOT NULL,
 	MaKH INT NOT NULL,
 	MaSan INT NOT NULL,
-	ThanhTien decimal DEFAULT 0,
+	ThanhTien decimal CHECK(ThanhTien >= 0) DEFAULT 0,
 	CONSTRAINT PK_LICHDATSAN PRIMARY KEY (MaLich),
 	CONSTRAINT FK_LICHDATSAN_KHACHHANG FOREIGN KEY (MaKH) REFERENCES KHACHHANG(MaKH),
 	CONSTRAINT FK_LICHDATSAN_SANBONG FOREIGN KEY (MaSan) REFERENCES SANBONG(MaSan)
@@ -61,9 +61,9 @@ CREATE TABLE HOADON
 	NgayTao DATETIME DEFAULT GETDATE(),
 	MaSan INT NOT NULL,
 	MaKH INT NOT NULL,
-	TongPhut INT,
-	DonGia decimal,
-	TongTien decimal DEFAULT 0,
+	TongPhut INT NOT NULL,
+	DonGia decimal check(DonGia > 0) DEFAULT 100000,
+	TongTien decimal CHECK(TongTien >= 0) DEFAULT 0,
 	CONSTRAINT PK_HOADON PRIMARY KEY (MaHD),
 	CONSTRAINT FK_HOADON_SANBONG FOREIGN KEY (MaSan) REFERENCES SANBONG(MaSan),
 	CONSTRAINT FK_HOADON_KHACHHANG FOREIGN KEY (MaKH) REFERENCES KHACHHANG(MaKH)
@@ -73,7 +73,7 @@ CREATE TABLE DICHVU
 (
 	MaDV INT IDENTITY(1,1) NOT NULL,
 	TenDV NVARCHAR(30) NOT NULL,
-	DonGia INT DEFAULT 10000,
+	DonGia INT CHECK(DonGia > 0) DEFAULT 10000,
 	CONSTRAINT PK_DICHVU PRIMARY KEY (MaDV)
 )
 -- Trí
@@ -82,7 +82,7 @@ CREATE TABLE CHITIETHD
 (
 	MaDV INT NOT NULL,
 	MaHD INT NOT NULL,
-	SoLuong INT DEFAULT 1,
+	SoLuong INT CHECK(SoLuong > 0) DEFAULT 1,
 	CONSTRAINT PK_CHITIETHD PRIMARY KEY (MaDV,MaHD),
 	CONSTRAINT PK_CHITIETHD_HOADON FOREIGN KEY (MaHD) REFERENCES HOADON(MaHD),
 	CONSTRAINT PK_CHITIETHD_DICHVU FOREIGN KEY (MaDV) REFERENCES DICHVU(MaDV)
@@ -119,8 +119,8 @@ BEGIN
 	AND LICHDATSAN.MASAN = i.MaSan
 END
 GO
--- Đạt
 
+-- Đạt
 GO
 CREATE TRIGGER UpdateTotalLichDatSan
 ON LICHDATSAN
@@ -178,8 +178,24 @@ BEGIN
     WHERE (SELECT MADV FROM inserted) = CHITIETHD.MADV
 	AND HOADON.MAHD = CHITIETHD.MAHD
 END
-GO
 
+GO
+CREATE TRIGGER TR_KHACHHANG_CapNhatDiaChiSDT
+ON KHACHHANG
+AFTER INSERT
+AS
+BEGIN
+    UPDATE KHACHHANG
+    SET DiaChi = N'Chưa xác định'
+    FROM KHACHHANG
+    INNER JOIN inserted ON KHACHHANG.MaKH = inserted.MaKH
+    WHERE inserted.DiaChi IS NULL OR inserted.DiaChi = '';
+
+    UPDATE KHACHHANG
+    SET SDT = REPLACE(REPLACE(REPLACE(inserted.SDT, ' ', ''), '-', ''), '.', '')
+    FROM KHACHHANG
+    INNER JOIN inserted ON KHACHHANG.MaKH = inserted.MaKH;
+END;
 -- Trí
 -- Cập nhật tổng tiền của hóa đơn khi thay đổi số lượng trong chi tiết hóa đơn
 GO
@@ -235,10 +251,11 @@ VALUES ('admin1', '123456', N'Đạt', 1),
 ('nhanvien2', 'nhanvien123456', N'Trí', 0)
 -- Đạt
 INSERT INTO LOAISAN
-VALUES (N'Sân 5 Người', '100000'),
-(N'Sân 7 Người', '300000'),
-(N'Sân 9 Người', '500000'),
-(N'Sân 11 Người', '1000000')
+VALUES (N'Sân 5 Người', 100000),
+(N'Sân 7 Người', 300000),
+(N'Sân 9 Người', 500000),
+(N'Sân 11 Người', 1000000)
+
 -- Đạt
 INSERT INTO SANBONG
 VALUES (N'Sân 5 - 1', 1),
@@ -367,10 +384,10 @@ GO
 
 GO
 CREATE PROC SP_TimKiemSan
-@TenSan nvarchar(100)
+@str nvarchar(100)
 AS
 BEGIN
-	SELECT * FROM SANBONG WHERE TENSAN LIKE '%' + @TenSan + '%' OR MaSan = convert(int,@TenSan) OR MaLoai = convert(int,@TenSan)
+	SELECT * FROM SANBONG WHERE TENSAN LIKE '%' + @str + '%' OR MaSan LIKE '%' + @str + '%' OR MaLoai LIKE '%' + @str + '%'
 END
 GO
 
@@ -424,10 +441,10 @@ GO
 
 GO
 CREATE PROC SP_TimKiemLoaiSan
-@TenLoai nvarchar(100)
+@str nvarchar(100)
 AS
 BEGIN
-	SELECT * FROM LOAISAN WHERE TenLoai LIKE '%' + @TenLoai + '%' OR MaLoai = convert(int,@TenLoai) OR GiaThue = convert(int,@TenLoai)
+	SELECT * FROM LOAISAN WHERE TenLoai LIKE '%' + @str + '%' OR MaLoai LIKE '%' + @str + '%' OR GiaThue LIKE '%' + @str + '%'
 END
 GO
 
@@ -522,11 +539,11 @@ END
 --Stored Procedures SP_TimDV
 GO
 CREATE PROC SP_TimDV
-@TenDv nvarchar(100)
+@str nvarchar(100)
 AS
 BEGIN
 	SELECT * FROM DICHVU
-	WHERE TenDV LIKE '%' + @TenDV + '%';
+	WHERE TenDV LIKE '%' + @str + '%' OR MaDV LIKE '%' + @str + '%' OR DonGia LIKE '%' + @str + '%';
 END
 GO
 
@@ -613,7 +630,7 @@ CREATE PROC SP_TimKH
 AS
 BEGIN
 	SELECT * FROM KHACHHANG
-	WHERE TenKH LIKE '%' + @STR + '%' OR MaKH = convert(int,@STR) OR DiaChi LIKE '%' + @STR + '%' OR SDT LIKE '%' + @STR + '%';
+	WHERE TenKH LIKE '%' + @STR + '%' OR MaKH LIKE '%' + @STR + '%' OR DiaChi LIKE '%' + @STR + '%' OR SDT LIKE '%' + @STR + '%';
 END
 GO
 
