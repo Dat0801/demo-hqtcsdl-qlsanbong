@@ -34,6 +34,8 @@ namespace QLSanBong
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dataGridView_DSKH = new System.Windows.Forms.DataGridView();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtMaKH = new System.Windows.Forms.TextBox();
             this.txt_SDT = new System.Windows.Forms.TextBox();
             this.txt_DiaChi = new System.Windows.Forms.TextBox();
             this.lb_SDT = new System.Windows.Forms.Label();
@@ -68,8 +70,17 @@ namespace QLSanBong
             this.lb_hoadon = new System.Windows.Forms.Label();
             this.dgv_HoaDon = new System.Windows.Forms.DataGridView();
             this.tab_QLKinhDoanh = new System.Windows.Forms.TabControl();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtMaKH = new System.Windows.Forms.TextBox();
+            this.tab_CTHD = new System.Windows.Forms.TabPage();
+            this.btn_ThemCTHD = new System.Windows.Forms.Button();
+            this.btn_SuaCTHD = new System.Windows.Forms.Button();
+            this.btn_XoaCTHD = new System.Windows.Forms.Button();
+            this.txt_SoLuong = new System.Windows.Forms.TextBox();
+            this.dgv_CTHD = new System.Windows.Forms.DataGridView();
+            this.cbo_MaHD = new System.Windows.Forms.ComboBox();
+            this.cbo_MaDV = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tab_QLKH.SuspendLayout();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_DSKH)).BeginInit();
@@ -79,6 +90,8 @@ namespace QLSanBong
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_HoaDon)).BeginInit();
             this.tab_QLKinhDoanh.SuspendLayout();
+            this.tab_CTHD.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CTHD)).BeginInit();
             this.SuspendLayout();
             // 
             // tab_QLKH
@@ -138,6 +151,25 @@ namespace QLSanBong
             this.groupBox8.TabIndex = 57;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Thông tin";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(75, 206);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 21);
+            this.label6.TabIndex = 67;
+            this.label6.Text = "Mã KH:";
+            // 
+            // txtMaKH
+            // 
+            this.txtMaKH.Location = new System.Drawing.Point(223, 203);
+            this.txtMaKH.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.ReadOnly = true;
+            this.txtMaKH.Size = new System.Drawing.Size(209, 28);
+            this.txtMaKH.TabIndex = 66;
             // 
             // txt_SDT
             // 
@@ -495,6 +527,7 @@ namespace QLSanBong
             // 
             this.tab_QLKinhDoanh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tab_QLKinhDoanh.Controls.Add(this.tab_HoaDon);
+            this.tab_QLKinhDoanh.Controls.Add(this.tab_CTHD);
             this.tab_QLKinhDoanh.Controls.Add(this.tab_QLKH);
             this.tab_QLKinhDoanh.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tab_QLKinhDoanh.Location = new System.Drawing.Point(66, -2);
@@ -505,24 +538,129 @@ namespace QLSanBong
             this.tab_QLKinhDoanh.Size = new System.Drawing.Size(1261, 760);
             this.tab_QLKinhDoanh.TabIndex = 2;
             // 
-            // label6
+            // tab_CTHD
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(75, 206);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 21);
-            this.label6.TabIndex = 67;
-            this.label6.Text = "Mã KH:";
+            this.tab_CTHD.Controls.Add(this.btn_ThemCTHD);
+            this.tab_CTHD.Controls.Add(this.btn_SuaCTHD);
+            this.tab_CTHD.Controls.Add(this.btn_XoaCTHD);
+            this.tab_CTHD.Controls.Add(this.txt_SoLuong);
+            this.tab_CTHD.Controls.Add(this.dgv_CTHD);
+            this.tab_CTHD.Controls.Add(this.cbo_MaHD);
+            this.tab_CTHD.Controls.Add(this.cbo_MaDV);
+            this.tab_CTHD.Controls.Add(this.label15);
+            this.tab_CTHD.Controls.Add(this.label1);
+            this.tab_CTHD.Controls.Add(this.label2);
+            this.tab_CTHD.Location = new System.Drawing.Point(4, 29);
+            this.tab_CTHD.Name = "tab_CTHD";
+            this.tab_CTHD.Size = new System.Drawing.Size(1253, 727);
+            this.tab_CTHD.TabIndex = 4;
+            this.tab_CTHD.Text = "Chi tiết hóa đơn";
+            this.tab_CTHD.UseVisualStyleBackColor = true;
             // 
-            // txtMaKH
+            // btn_ThemCTHD
             // 
-            this.txtMaKH.Location = new System.Drawing.Point(223, 203);
-            this.txtMaKH.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.ReadOnly = true;
-            this.txtMaKH.Size = new System.Drawing.Size(209, 28);
-            this.txtMaKH.TabIndex = 66;
+            this.btn_ThemCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ThemCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_ThemCTHD.Image")));
+            this.btn_ThemCTHD.Location = new System.Drawing.Point(522, 54);
+            this.btn_ThemCTHD.Name = "btn_ThemCTHD";
+            this.btn_ThemCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_ThemCTHD.TabIndex = 59;
+            this.btn_ThemCTHD.Text = "Thêm";
+            this.btn_ThemCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_ThemCTHD.UseVisualStyleBackColor = true;
+            this.btn_ThemCTHD.Click += new System.EventHandler(this.btn_ThemCTHD_Click);
+            // 
+            // btn_SuaCTHD
+            // 
+            this.btn_SuaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_SuaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_SuaCTHD.Image")));
+            this.btn_SuaCTHD.Location = new System.Drawing.Point(842, 54);
+            this.btn_SuaCTHD.Name = "btn_SuaCTHD";
+            this.btn_SuaCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_SuaCTHD.TabIndex = 57;
+            this.btn_SuaCTHD.Text = "Sửa";
+            this.btn_SuaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_SuaCTHD.UseVisualStyleBackColor = true;
+            this.btn_SuaCTHD.Click += new System.EventHandler(this.btn_SuaCTHD_Click);
+            // 
+            // btn_XoaCTHD
+            // 
+            this.btn_XoaCTHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_XoaCTHD.Image = ((System.Drawing.Image)(resources.GetObject("btn_XoaCTHD.Image")));
+            this.btn_XoaCTHD.Location = new System.Drawing.Point(680, 54);
+            this.btn_XoaCTHD.Name = "btn_XoaCTHD";
+            this.btn_XoaCTHD.Size = new System.Drawing.Size(134, 69);
+            this.btn_XoaCTHD.TabIndex = 56;
+            this.btn_XoaCTHD.Text = "Xóa";
+            this.btn_XoaCTHD.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_XoaCTHD.UseVisualStyleBackColor = true;
+            this.btn_XoaCTHD.Click += new System.EventHandler(this.btn_XoaCTHD_Click);
+            // 
+            // txt_SoLuong
+            // 
+            this.txt_SoLuong.Location = new System.Drawing.Point(239, 135);
+            this.txt_SoLuong.Name = "txt_SoLuong";
+            this.txt_SoLuong.Size = new System.Drawing.Size(228, 28);
+            this.txt_SoLuong.TabIndex = 54;
+            // 
+            // dgv_CTHD
+            // 
+            this.dgv_CTHD.AllowUserToAddRows = false;
+            this.dgv_CTHD.AllowUserToDeleteRows = false;
+            this.dgv_CTHD.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_CTHD.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_CTHD.Location = new System.Drawing.Point(42, 195);
+            this.dgv_CTHD.Name = "dgv_CTHD";
+            this.dgv_CTHD.RowHeadersWidth = 51;
+            this.dgv_CTHD.RowTemplate.Height = 24;
+            this.dgv_CTHD.Size = new System.Drawing.Size(1169, 512);
+            this.dgv_CTHD.TabIndex = 53;
+            this.dgv_CTHD.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CTHD_CellClick);
+            // 
+            // cbo_MaHD
+            // 
+            this.cbo_MaHD.FormattingEnabled = true;
+            this.cbo_MaHD.Location = new System.Drawing.Point(239, 75);
+            this.cbo_MaHD.Name = "cbo_MaHD";
+            this.cbo_MaHD.Size = new System.Drawing.Size(228, 28);
+            this.cbo_MaHD.TabIndex = 52;
+            // 
+            // cbo_MaDV
+            // 
+            this.cbo_MaDV.FormattingEnabled = true;
+            this.cbo_MaDV.Location = new System.Drawing.Point(239, 20);
+            this.cbo_MaDV.Name = "cbo_MaDV";
+            this.cbo_MaDV.Size = new System.Drawing.Size(228, 28);
+            this.cbo_MaDV.TabIndex = 51;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(119, 135);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(78, 21);
+            this.label15.TabIndex = 50;
+            this.label15.Text = "Số lượng";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(119, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 58;
+            this.label1.Text = "Mã DV";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(119, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.TabIndex = 55;
+            this.label2.Text = "Mã HD";
             // 
             // FormQLKDNhanVien
             // 
@@ -532,6 +670,7 @@ namespace QLSanBong
             this.Controls.Add(this.tab_QLKinhDoanh);
             this.Name = "FormQLKDNhanVien";
             this.Text = "FormQLKDNhanVien";
+            this.Load += new System.EventHandler(this.FormQLKDNhanVien_Load);
             this.tab_QLKH.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_DSKH)).EndInit();
@@ -545,6 +684,9 @@ namespace QLSanBong
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_HoaDon)).EndInit();
             this.tab_QLKinhDoanh.ResumeLayout(false);
+            this.tab_CTHD.ResumeLayout(false);
+            this.tab_CTHD.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_CTHD)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -591,5 +733,16 @@ namespace QLSanBong
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtMaKH;
+        private System.Windows.Forms.TabPage tab_CTHD;
+        private System.Windows.Forms.Button btn_ThemCTHD;
+        private System.Windows.Forms.Button btn_SuaCTHD;
+        private System.Windows.Forms.Button btn_XoaCTHD;
+        private System.Windows.Forms.TextBox txt_SoLuong;
+        private System.Windows.Forms.DataGridView dgv_CTHD;
+        private System.Windows.Forms.ComboBox cbo_MaHD;
+        private System.Windows.Forms.ComboBox cbo_MaDV;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

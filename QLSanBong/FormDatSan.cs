@@ -36,7 +36,7 @@ namespace QLSanBong
                 btn.Text = item.TenSan;
                 btn.Click += btn_Click;
                 btn.Tag = item;
-                btn.Font = new System.Drawing.Font("Times New Roman",14,FontStyle.Bold);
+                btn.Font = new System.Drawing.Font("Times New Roman", 14, FontStyle.Bold);
                 btn.ForeColor = Color.White;
                 btn.BackgroundImage = QLSanBong.Properties.Resources.san;
                 btn.BackgroundImageLayout = ImageLayout.Stretch;
@@ -49,7 +49,7 @@ namespace QLSanBong
             San san = (sender as Button).Tag as San;
             cbo_TenSan.SelectedValue = san.MaSan;
             List<LoaiSan> ListLoaiSan = LoaiSanDAO.Instance.LoadListLoaiSan();
-            foreach (var item in ListLoaiSan) 
+            foreach (var item in ListLoaiSan)
             {
                 if (san.MaLoai == item.MaLoai)
                     txt_DonGia.Text = item.GiaThue.ToString();
@@ -61,7 +61,7 @@ namespace QLSanBong
             cbo_TenSan.ValueMember = "MaSan";
             List<San> ListSan = SanDAO.Instance.LoadListSan();
             int maSan = int.Parse(cbo_TenSan.SelectedValue.ToString());
-            San san = new San(); 
+            San san = new San();
             foreach (var item in ListSan)
             {
                 if (maSan == item.MaSan)
@@ -125,7 +125,10 @@ namespace QLSanBong
                 if (flag == 1)
                     MessageBox.Show("Sân đã được đặt trong thời gian trên!");
                 else
+                {
                     LichDatSanDAO.Instance.ThemLichDatSan(thoiGianBD, thoiGianKT, maKH, maSan);
+                    MessageBox.Show("Đặt sân thành công!");
+                }
                 loadLichDatSan();
             }
         }
@@ -135,19 +138,20 @@ namespace QLSanBong
             int maLich = 0;
             try
             {
-                 maLich = int.Parse(txtMaLich.Text);
+                maLich = int.Parse(txtMaLich.Text);
             }
             catch
             {
                 MessageBox.Show("Vui lòng chọn lịch muốn xóa!");
             }
-            if(maLich != 0)
+            if (maLich != 0)
             {
                 DialogResult r;
                 r = MessageBox.Show("Bạn có chắc muốn trả sân?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                 if (r == DialogResult.Yes)
                 {
                     LichDatSanDAO.Instance.XoaLichDatSan(maLich);
+                    MessageBox.Show("Trả sân thành công!");
                     txtMaLich.Clear();
                     cbo_TenSan.SelectedIndex = 0;
                     cbo_TenKH.SelectedIndex = 0;
@@ -155,7 +159,7 @@ namespace QLSanBong
                     int TongPhut = (int)timeDiff.TotalMinutes;
                     MessageBox.Show("Tổng phút là: " + TongPhut);
                 }
-                
+
             }
             loadLichDatSan();
         }
@@ -164,17 +168,17 @@ namespace QLSanBong
         {
             string thoiGianBD = dateTimePicker_NgayBD.Value.ToString();
             string thoiGianKT = dateTimePicker_NgayKT.Value.ToString();
-            
+
             int maLich = 0;
             try
             {
                 maLich = int.Parse(txtMaLich.Text);
-            } 
+            }
             catch
             {
                 MessageBox.Show("Vui lòng chọn lịch muốn sửa!");
             }
-            if(maLich != 0)
+            if (maLich != 0)
             {
                 int maKH = int.Parse(cbo_TenKH.SelectedValue.ToString());
                 int maSan = int.Parse(cbo_TenSan.SelectedValue.ToString());
@@ -197,7 +201,10 @@ namespace QLSanBong
                     if (flag == 1)
                         MessageBox.Show("Sân đã được đặt trong thời gian trên!");
                     else
+                    {
                         LichDatSanDAO.Instance.SuaLichDatSan(maLich, thoiGianBD, thoiGianKT, maKH, maSan);
+                        MessageBox.Show("Sửa lịch đặt sân thành công!");
+                    }
                 }
             }
             loadLichDatSan();
@@ -205,7 +212,7 @@ namespace QLSanBong
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btn_TraSan_Click(sender,e);
+            btn_TraSan_Click(sender, e);
         }
 
         private void btnXuatReport_Click(object sender, EventArgs e)

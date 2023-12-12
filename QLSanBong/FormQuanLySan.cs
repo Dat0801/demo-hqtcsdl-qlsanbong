@@ -40,7 +40,10 @@ namespace QLSanBong
                 if (KiemTraTrungTenSan(tenSan))
                     MessageBox.Show("Tên sân đã tồn tại!");
                 else
+                {
                     SanDAO.Instance.ThemSan(tenSan, maLoai);
+                    MessageBox.Show("Thêm thành công!");
+                }
                 txtMaSan.Clear();
                 txtTenSan.Clear();
                 cbo_LoaiSan.SelectedIndex = 0;
@@ -117,6 +120,7 @@ namespace QLSanBong
                     else
                     {
                         SanDAO.Instance.XoaSan(maSan);
+                        MessageBox.Show("Xóa sân thành công!");
                         txtMaSan.Clear();
                         txtTenSan.Clear();
                         cbo_LoaiSan.SelectedIndex = 0;
@@ -139,13 +143,14 @@ namespace QLSanBong
                 {
                     int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
                     SanDAO.Instance.SuaSan(maSan, tenSan, maLoai);
+                    MessageBox.Show("Sửa sân thành công!");
                 }
             }
             catch
             {
                 MessageBox.Show("Vui lòng chọn sân muốn sửa!");
             }
-            
+
             loadSan();
         }
 
@@ -188,6 +193,7 @@ namespace QLSanBong
                     else
                     {
                         LoaiSanDAO.Instance.ThemLoaiSan(tenLoai, giaThue);
+                        MessageBox.Show("Thêm loại sân thành công!");
                         txtMaLoai.Clear();
                         txtTenLoai.Clear();
                         txtGiaThue.Clear();
@@ -240,6 +246,7 @@ namespace QLSanBong
                     else
                     {
                         LoaiSanDAO.Instance.XoaLoaiSan(maLoai);
+                        MessageBox.Show("Xóa loại sân thành công!");
                         txtMaLoai.Clear();
                         txtTenLoai.Clear();
                         txtGiaThue.Clear();
@@ -269,7 +276,10 @@ namespace QLSanBong
                         if (giaThue <= 0)
                             MessageBox.Show("Vui lòng nhập giá thuê lớn hơn 0!");
                         else
+                        {
                             LoaiSanDAO.Instance.SuaLoaiSan(maLoai, tenLoai, giaThue);
+                            MessageBox.Show("Sửa loại sân thành công!");
+                        }
                     }
                     catch
                     {

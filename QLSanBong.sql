@@ -38,7 +38,7 @@ CREATE TABLE KHACHHANG
 	MaKH INT IDENTITY(1,1) NOT NULL,
 	TenKH NVARCHAR(100) NOT NULL,
 	DiaChi NVARCHAR(50) DEFAULT N'Chưa xác định',
-	SDT VARCHAR(10) NOT NULL UNIQUE,
+	SDT VARCHAR(10) NOT NULL,
 	CONSTRAINT PK_KHACHHANG PRIMARY KEY (MaKH)
 )
 -- Đạt
@@ -334,6 +334,7 @@ BEGIN
 END
 GO
 
+-- Đạt
 -- Stored Procedures Quản lý sân
 GO
 CREATE PROC SP_GetListSan
@@ -546,6 +547,18 @@ BEGIN
 	WHERE TenDV LIKE '%' + @str + '%' OR MaDV LIKE '%' + @str + '%' OR DonGia LIKE '%' + @str + '%';
 END
 GO
+
+GO
+CREATE PROC SP_DoanhThuTheoLoaiSan
+@maloai int
+as 
+begin
+	SELECT MAHD, NgayTao, MAKH, HOADON.MASAN, TongPhut, DonGia, TONGTIEN
+	FROM HOADON, SANBONG
+	WHERE HOADON.MaSan = SANBONG.MaSan
+	AND SANBONG.MaLoai = @maloai
+end
+go
 
 -- Trí
 -- Stored Procedures SP_GetListHoaDon

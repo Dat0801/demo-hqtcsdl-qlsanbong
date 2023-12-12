@@ -37,8 +37,8 @@ namespace QLSanBong
             this.lbl_TongDT = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btn_TKNam = new System.Windows.Forms.Button();
-            this.cbo_Nam = new System.Windows.Forms.ComboBox();
+            this.btn_TK = new System.Windows.Forms.Button();
+            this.cbo_LoaiSan = new System.Windows.Forms.ComboBox();
             this.groupBox_TimKiemSan = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -207,8 +207,8 @@ namespace QLSanBong
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label5);
-            this.groupBox4.Controls.Add(this.btn_TKNam);
-            this.groupBox4.Controls.Add(this.cbo_Nam);
+            this.groupBox4.Controls.Add(this.btn_TK);
+            this.groupBox4.Controls.Add(this.cbo_LoaiSan);
             this.groupBox4.Location = new System.Drawing.Point(708, 25);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
@@ -216,46 +216,46 @@ namespace QLSanBong
             this.groupBox4.Size = new System.Drawing.Size(517, 97);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Tìm kiếm";
+            this.groupBox4.Text = "Thống kê";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(57, 43);
+            this.label5.Location = new System.Drawing.Point(23, 42);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 20);
+            this.label5.Size = new System.Drawing.Size(73, 20);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Năm";
+            this.label5.Text = "Loại sân";
             // 
-            // btn_TKNam
+            // btn_TK
             // 
-            this.btn_TKNam.BackColor = System.Drawing.Color.White;
-            this.btn_TKNam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_TKNam.Image = ((System.Drawing.Image)(resources.GetObject("btn_TKNam.Image")));
-            this.btn_TKNam.Location = new System.Drawing.Point(244, 27);
-            this.btn_TKNam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btn_TKNam.Name = "btn_TKNam";
-            this.btn_TKNam.Size = new System.Drawing.Size(204, 53);
-            this.btn_TKNam.TabIndex = 13;
-            this.btn_TKNam.Text = "Thống kê năm";
-            this.btn_TKNam.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_TKNam.UseVisualStyleBackColor = false;
-            this.btn_TKNam.Click += new System.EventHandler(this.btn_TKNam_Click);
+            this.btn_TK.BackColor = System.Drawing.Color.White;
+            this.btn_TK.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TK.Image = ((System.Drawing.Image)(resources.GetObject("btn_TK.Image")));
+            this.btn_TK.Location = new System.Drawing.Point(291, 27);
+            this.btn_TK.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_TK.Name = "btn_TK";
+            this.btn_TK.Size = new System.Drawing.Size(204, 53);
+            this.btn_TK.TabIndex = 13;
+            this.btn_TK.Text = "Thống kê";
+            this.btn_TK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_TK.UseVisualStyleBackColor = false;
+            this.btn_TK.Click += new System.EventHandler(this.btn_TKNam_Click);
             // 
-            // cbo_Nam
+            // cbo_LoaiSan
             // 
-            this.cbo_Nam.FormattingEnabled = true;
-            this.cbo_Nam.Items.AddRange(new object[] {
+            this.cbo_LoaiSan.FormattingEnabled = true;
+            this.cbo_LoaiSan.Items.AddRange(new object[] {
             "2021",
             "2022",
             "2023"});
-            this.cbo_Nam.Location = new System.Drawing.Point(117, 39);
-            this.cbo_Nam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cbo_Nam.Name = "cbo_Nam";
-            this.cbo_Nam.Size = new System.Drawing.Size(76, 28);
-            this.cbo_Nam.TabIndex = 12;
+            this.cbo_LoaiSan.Location = new System.Drawing.Point(120, 36);
+            this.cbo_LoaiSan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbo_LoaiSan.Name = "cbo_LoaiSan";
+            this.cbo_LoaiSan.Size = new System.Drawing.Size(147, 28);
+            this.cbo_LoaiSan.TabIndex = 12;
             // 
             // groupBox_TimKiemSan
             // 
@@ -1234,8 +1234,8 @@ namespace QLSanBong
         private System.Windows.Forms.Label lbl_TongDT;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btn_TKNam;
-        private System.Windows.Forms.ComboBox cbo_Nam;
+        private System.Windows.Forms.Button btn_TK;
+        private System.Windows.Forms.ComboBox cbo_LoaiSan;
         private System.Windows.Forms.GroupBox groupBox_TimKiemSan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;

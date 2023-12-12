@@ -83,13 +83,13 @@ namespace QLSanBong.DAO
             }
         }
 
-        public List<HoaDon> getListHoaDon(int Nam)
+        public List<HoaDon> getListHoaDon(int maLoai)
         {
             try
             {
-                string query = "Select * from HoaDon where Year(NgayTao) = '" + Nam + "'";
+                string query = "SP_DoanhThuTheoLoaiSan @maloai";
                 List<HoaDon> listHoaDon = new List<HoaDon>();
-                DataTable data = DataProvider.Instance.ExecuteQuery(query);
+                DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { maLoai });
                 foreach (DataRow row in data.Rows)
                 {
                     HoaDon hoaDon = new HoaDon(row);

@@ -25,7 +25,7 @@ namespace QLSanBong
             loadHoaDon();
             loadKhachHang();
             loadCTHD();
-
+            loadCboLoaiSan();
         }
         private void loadCTHD()
         {
@@ -185,7 +185,7 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn dịch vụ muốn sửa!");
             }
-            
+
             loaddicvu();
             loadHoaDon();
         }
@@ -464,12 +464,20 @@ namespace QLSanBong
 
         }
 
+        private void loadCboLoaiSan()
+        {
+            List<LoaiSan> listLoaiSan = LoaiSanDAO.Instance.LoadListLoaiSan();
+            cbo_LoaiSan.DataSource = listLoaiSan;
+            cbo_LoaiSan.DisplayMember = "TenLoai";
+            cbo_LoaiSan.ValueMember = "MaLoai";
+        }
+
         private void btn_TKNam_Click(object sender, EventArgs e)
         {
-            if (cbo_Nam.SelectedItem != null)
+            if (cbo_LoaiSan.SelectedValue != null)
             {
-                int nam = int.Parse(cbo_Nam.SelectedItem.ToString());
-                List<HoaDon> listHD = HoaDonDAO.Instance.getListHoaDon(nam);
+                int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
+                List<HoaDon> listHD = HoaDonDAO.Instance.getListHoaDon(maLoai);
                 reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
                 ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
                 reportViewer1.LocalReport.DataSources.Clear();
@@ -486,7 +494,6 @@ namespace QLSanBong
             {
                 MessageBox.Show("Vui lòng chọn năm muốn thống kê!");
             }
-            loadHoaDon();
         }
 
         private void btn_XoaCTHD_Click(object sender, EventArgs e)
