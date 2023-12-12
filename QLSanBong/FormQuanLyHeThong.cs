@@ -36,7 +36,7 @@ namespace QLSanBong
             else
             {
                 if (AccountDAO.Instance.KiemTraTrungTaiKhoan(UserName))
-                    MessageBox.Show("Tên sân đã tồn tại!");
+                    MessageBox.Show("Tên tài khoản đã tồn tại!");
                 else
                 {
                     string Password = txt_MK.Text;
