@@ -63,5 +63,11 @@ namespace QLSanBong.DAO
             return result;
         }
 
+        public bool KiemTraTrungTenDV(string tenDV)
+        {
+            string query = "SP_KiemTraTrungTenDichVu @TenDV";
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { tenDV });
+            return result.Rows.Count > 0;
+        }
     }
 }

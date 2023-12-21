@@ -29,18 +29,27 @@ namespace QLSanBong
         private void btn_Them_Click(object sender, EventArgs e)
         {
             string UserName = txt_TK.Text;
+            string Password = txt_MK.Text;
+            string DisplayName = txt_tenHT.Text;
             if (UserName == "")
             {
-                MessageBox.Show("Vui lòng nhập tài khoản khách hàng");
+                MessageBox.Show("Vui lòng nhập tài khoản");
+            }
+            else if (string.IsNullOrEmpty(Password))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu");
+            }
+            else if (string.IsNullOrEmpty(DisplayName))
+            {
+                MessageBox.Show("Vui lòng nhập tên hiển thị");
             }
             else
             {
                 if (AccountDAO.Instance.KiemTraTrungTaiKhoan(UserName))
-                    MessageBox.Show("Tên sân đã tồn tại!");
+                    MessageBox.Show("Tên tài khoản đã tồn tại!");
                 else
                 {
-                    string Password = txt_MK.Text;
-                    string DisplayName = txt_tenHT.Text;
+
                     string Role = cb_Quyen.Text;
                     AccountDAO.Instance.ThemTaiKhoan(UserName, Password, DisplayName, Role);
                 }
@@ -71,34 +80,26 @@ namespace QLSanBong
 
         private void btn__Sua_Click(object sender, EventArgs e)
         {
-            string UserName = "";
-            try
-            {
-                UserName = txt_TK.Text;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Vui lòng chọn tài khoản muốn sửa!");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(UserName))
-            {
-                MessageBox.Show("Vui lòng chọn tài khoản muốn sửa!");
-                return;
-            }
-
+            string UserName = txt_TK.Text;
             string Password = txt_MK.Text;
             string DisplayName = txt_tenHT.Text;
-            string Role = cb_Quyen.Text;
-
-            try
+            if (UserName == "")
             {
+                MessageBox.Show("Vui lòng nhập tài khoản");
+            }
+            else if (string.IsNullOrEmpty(Password))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu");
+            }
+            else if (string.IsNullOrEmpty(DisplayName))
+            {
+                MessageBox.Show("Vui lòng nhập tên hiển thị");
+            }
+            else
+            {
+                string Role = cb_Quyen.Text;
                 AccountDAO.Instance.SuaTaiKhoan(UserName, Password, DisplayName, Role);
                 MessageBox.Show("Sửa thông tin tài khoản thành công!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi sửa thông tin tài khoản: " + ex.Message);
             }
             loadAccount();
         }
@@ -118,6 +119,31 @@ namespace QLSanBong
             string tenTaiKhoan = txt_TimkiemTK.Text;
             List<Account> ListTaiKhoan = AccountDAO.Instance.timkiemTaiKhoan(tenTaiKhoan);
             dataGridView4.DataSource = ListTaiKhoan;
+        }
+
+        private void btnXoaTK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string UserName = txt_TK.Text;
+                if (string.IsNullOrWhiteSpace(UserName))
+                {
+                    MessageBox.Show("Vui lòng chọn tài khoản muốn xóa!");
+                    return;
+                }
+                DialogResult r;
+                r = MessageBox.Show("Bạn có chắc muốn xóa tài khoản?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                if (r == DialogResult.Yes)
+                {
+                    AccountDAO.Instance.XoaTaiKhoan(UserName);
+                    MessageBox.Show("Xóa thông tin tài khoản thành công!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi sửa thông tin tài khoản: " + ex.Message);
+            }
+            loadAccount();
         }
     }
 }

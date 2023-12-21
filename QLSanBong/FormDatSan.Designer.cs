@@ -32,6 +32,7 @@ namespace QLSanBong
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_DatSan = new System.Windows.Forms.TabPage();
+            this.btnXuatReport = new System.Windows.Forms.Button();
             this.groupBoxDatSan = new System.Windows.Forms.GroupBox();
             this.txtMaLich = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@ namespace QLSanBong
             this.dataGridView_LichDatSan = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip_LichDatSan = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnXuatReport = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_DatSan.SuspendLayout();
             this.groupBoxDatSan.SuspendLayout();
@@ -83,6 +83,16 @@ namespace QLSanBong
             this.tabPage_DatSan.Size = new System.Drawing.Size(1245, 754);
             this.tabPage_DatSan.TabIndex = 0;
             this.tabPage_DatSan.Text = "Đặt sân";
+            // 
+            // btnXuatReport
+            // 
+            this.btnXuatReport.Location = new System.Drawing.Point(1027, 6);
+            this.btnXuatReport.Name = "btnXuatReport";
+            this.btnXuatReport.Size = new System.Drawing.Size(185, 35);
+            this.btnXuatReport.TabIndex = 4;
+            this.btnXuatReport.Text = "Xuất Report";
+            this.btnXuatReport.UseVisualStyleBackColor = true;
+            this.btnXuatReport.Click += new System.EventHandler(this.btnXuatReport_Click);
             // 
             // groupBoxDatSan
             // 
@@ -315,16 +325,6 @@ namespace QLSanBong
             this.xóaToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
-            // 
-            // btnXuatReport
-            // 
-            this.btnXuatReport.Location = new System.Drawing.Point(1027, 6);
-            this.btnXuatReport.Name = "btnXuatReport";
-            this.btnXuatReport.Size = new System.Drawing.Size(185, 35);
-            this.btnXuatReport.TabIndex = 4;
-            this.btnXuatReport.Text = "Xuất Report";
-            this.btnXuatReport.UseVisualStyleBackColor = true;
-            this.btnXuatReport.Click += new System.EventHandler(this.btnXuatReport_Click);
             // 
             // FormDatSan
             // 

@@ -220,5 +220,6 @@ namespace QLSanBong
             FrmReportLichDatSan frmReport = new FrmReportLichDatSan();
             frmReport.ShowDialog();
         }
+       
     }
 }

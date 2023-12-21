@@ -35,6 +35,7 @@ namespace QLSanBong
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.btnXoaTK = new System.Windows.Forms.Button();
             this.cb_Quyen = new System.Windows.Forms.ComboBox();
             this.txt_MK = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -108,6 +109,7 @@ namespace QLSanBong
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.btnXoaTK);
             this.groupBox8.Controls.Add(this.cb_Quyen);
             this.groupBox8.Controls.Add(this.txt_MK);
             this.groupBox8.Controls.Add(this.label1);
@@ -125,6 +127,19 @@ namespace QLSanBong
             this.groupBox8.TabIndex = 60;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Thông tin";
+            // 
+            // btnXoaTK
+            // 
+            this.btnXoaTK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaTK.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTK.Image")));
+            this.btnXoaTK.Location = new System.Drawing.Point(190, 417);
+            this.btnXoaTK.Name = "btnXoaTK";
+            this.btnXoaTK.Size = new System.Drawing.Size(134, 69);
+            this.btnXoaTK.TabIndex = 63;
+            this.btnXoaTK.Text = "Xóa";
+            this.btnXoaTK.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoaTK.UseVisualStyleBackColor = true;
+            this.btnXoaTK.Click += new System.EventHandler(this.btnXoaTK_Click);
             // 
             // cb_Quyen
             // 
@@ -151,7 +166,7 @@ namespace QLSanBong
             this.label1.Location = new System.Drawing.Point(66, 337);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.Size = new System.Drawing.Size(63, 21);
             this.label1.TabIndex = 60;
             this.label1.Text = "Quyền:";
             // 
@@ -161,7 +176,7 @@ namespace QLSanBong
             this.label2.Location = new System.Drawing.Point(66, 236);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.Size = new System.Drawing.Size(83, 21);
             this.label2.TabIndex = 59;
             this.label2.Text = "Mật khẩu:";
             // 
@@ -171,7 +186,7 @@ namespace QLSanBong
             this.label3.Location = new System.Drawing.Point(66, 288);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 20);
+            this.label3.Size = new System.Drawing.Size(97, 21);
             this.label3.TabIndex = 58;
             this.label3.Text = "Tên hiển thị";
             // 
@@ -181,7 +196,7 @@ namespace QLSanBong
             this.label4.Location = new System.Drawing.Point(66, 176);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 20);
+            this.label4.Size = new System.Drawing.Size(88, 21);
             this.label4.TabIndex = 57;
             this.label4.Text = "Tài khoản:";
             // 
@@ -205,7 +220,7 @@ namespace QLSanBong
             // 
             this.btn_Them.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Them.Image = ((System.Drawing.Image)(resources.GetObject("btn_Them.Image")));
-            this.btn_Them.Location = new System.Drawing.Point(70, 417);
+            this.btn_Them.Location = new System.Drawing.Point(29, 417);
             this.btn_Them.Name = "btn_Them";
             this.btn_Them.Size = new System.Drawing.Size(134, 69);
             this.btn_Them.TabIndex = 46;
@@ -218,7 +233,7 @@ namespace QLSanBong
             // 
             this.btn__Sua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn__Sua.Image = ((System.Drawing.Image)(resources.GetObject("btn__Sua.Image")));
-            this.btn__Sua.Location = new System.Drawing.Point(291, 417);
+            this.btn__Sua.Location = new System.Drawing.Point(348, 417);
             this.btn__Sua.Name = "btn__Sua";
             this.btn__Sua.Size = new System.Drawing.Size(134, 69);
             this.btn__Sua.TabIndex = 45;
@@ -274,7 +289,7 @@ namespace QLSanBong
             this.label16.AutoSize = true;
             this.label16.Location = new System.Drawing.Point(65, 28);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(82, 20);
+            this.label16.Size = new System.Drawing.Size(84, 21);
             this.label16.TabIndex = 0;
             this.label16.Text = "Tài khoản";
             // 
@@ -320,5 +335,6 @@ namespace QLSanBong
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_tenHT;
         private System.Windows.Forms.TextBox txt_TK;
+        private System.Windows.Forms.Button btnXoaTK;
     }
 }

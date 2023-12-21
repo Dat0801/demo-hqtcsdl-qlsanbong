@@ -67,15 +67,15 @@ namespace QLSanBong.DAO
         }
         public bool SuaTaiKhoan(string username, string password, string displayname, string role)
         {
-            string query = "update ACCOUNT set Password = '" + password + "',DisplayName = '" + displayname + "',Role = '" + role + "' where UserName = '" + username + "'";
+            string query = "update ACCOUNT set Password = '" + password + "',DisplayName = N'" + displayname + "',Role = '" + role + "' where UserName = '" + username + "'";
             DataTable result = DataProvider.Instance.ExecuteQuery(query);
             return result.Rows.Count > 0;
         }
-        public List<Account> timkiemTaiKhoan(string username)
+        public List<Account> timkiemTaiKhoan(string str)
         {
             List<Account> ListTaiKhoan = new List<Account>();
-            string query = "SELECT * FROM Account WHERE UserName like '%" + username + "%'";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            string query = "SP_TimKiemTaiKhoan @str";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { str });
             foreach (DataRow row in data.Rows)
             {
                 Account account = new Account(row);

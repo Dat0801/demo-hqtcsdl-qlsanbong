@@ -31,6 +31,15 @@ namespace QLSanBong.DAO
             }
             return listHoaDon;
         }
+
+        public HoaDon getHoaDon(int maHD)
+        {
+            string query = "Select * from HoaDon where MaHD = '" + maHD + "'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            HoaDon hoaDon = new HoaDon(data.Rows[0]);
+            return hoaDon;
+        }
+
         public int XoaHoaDon(int maHD)
         {
             string query = "SP_XoaHoaDon @MaHD";

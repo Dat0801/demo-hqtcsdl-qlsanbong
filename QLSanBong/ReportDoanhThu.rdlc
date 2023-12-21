@@ -33,6 +33,10 @@
           <DataField>MaSan</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="NgayDatSan">
+          <DataField>NgayDatSan</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="NgayTao">
           <DataField>NgayTao</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -44,6 +48,10 @@
         <Field Name="TongTien">
           <DataField>TongTien</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TrangThai">
+          <DataField>TrangThai</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
@@ -99,6 +107,9 @@
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>1.175in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -113,7 +124,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.21667in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -124,7 +135,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ma HD</Value>
+                                  <Value>Mã Hóa Đơn</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -156,7 +167,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ma KH</Value>
+                                  <Value>Mã Khách Hàng</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -188,7 +199,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ma San</Value>
+                                  <Value>Mã Sân</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -213,6 +224,38 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Ngày Đặt Sân</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox36">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -220,7 +263,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ngay Tao</Value>
+                                  <Value>Ngày Tạo</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -252,7 +295,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Tong Tien</Value>
+                                  <Value>Tổng Tiền</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -378,6 +421,38 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="NgayDatSan">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!NgayDatSan.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>NgayDatSan</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="NgayTao">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -451,6 +526,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -465,9 +541,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSetDoanhThu</DataSetName>
             <Top>1.48833in</Top>
-            <Left>2.42917in</Left>
-            <Height>0.5in</Height>
-            <Width>5in</Width>
+            <Left>1.80417in</Left>
+            <Height>0.46667in</Height>
+            <Width>6.175in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>

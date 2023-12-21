@@ -111,11 +111,11 @@ namespace QLSanBong
                     }
                     if (flag == 1)
                     {
-                        MessageBox.Show("Sân không thể xóa do đang có quản lý lịch đặt sân tham chiếu!");
+                        MessageBox.Show("Sân không thể xóa do đang có quản lý lịch đặt sân đang sử dụng");
                     }
                     else if (flag == 2)
                     {
-                        MessageBox.Show("Sân không thể xóa do đang có quản lý đơn hàng tham chiếu!");
+                        MessageBox.Show("Sân không thể xóa do đang có quản lý đơn hàng đang sử dụng!");
                     }
                     else
                     {
@@ -142,8 +142,23 @@ namespace QLSanBong
                 else
                 {
                     int maLoai = int.Parse(cbo_LoaiSan.SelectedValue.ToString());
-                    SanDAO.Instance.SuaSan(maSan, tenSan, maLoai);
-                    MessageBox.Show("Sửa sân thành công!");
+                    List<San> listSan = SanDAO.Instance.LoadListSan();
+                    int flag = 0;
+                    foreach (var item in listSan)
+                    {
+                        if (item.TenSan == tenSan && item.MaSan != maSan)
+                        {
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 1)
+                        MessageBox.Show("Tên sân đã tồn tại!");
+                    else
+                    {
+                        SanDAO.Instance.SuaSan(maSan, tenSan, maLoai);
+                        MessageBox.Show("Sửa sân thành công!");
+                    }
+
                 }
             }
             catch
@@ -201,7 +216,7 @@ namespace QLSanBong
                 }
                 catch
                 {
-                    MessageBox.Show("Vui lòng nhập giá thuê!");
+                    MessageBox.Show("Vui lòng nhập đúng định dạng giá thuê!");
                 }
             }
 
@@ -241,7 +256,7 @@ namespace QLSanBong
                     }
                     if (flag == 1)
                     {
-                        MessageBox.Show("Loại sân không thể xóa do đang có quản lý sân tham chiếu!");
+                        MessageBox.Show("Loại sân không thể xóa do đang có quản lý sân đang sử dụng!");
                     }
                     else
                     {
@@ -273,8 +288,21 @@ namespace QLSanBong
                     try
                     {
                         double giaThue = double.Parse(txtGiaThue.Text);
+                        List<LoaiSan> listLoaiSan = LoaiSanDAO.Instance.LoadListLoaiSan();
+                        int flag = 0;
+                        foreach (var item in listLoaiSan)
+                        {
+                            if (item.TenLoai == tenLoai && item.MaLoai != maLoai)
+                            {
+                                flag = 1;
+                            }
+                        }
                         if (giaThue <= 0)
                             MessageBox.Show("Vui lòng nhập giá thuê lớn hơn 0!");
+                        else if (flag == 1)
+                        {
+                            MessageBox.Show("Tên loại sân đã tồn tại!");
+                        }
                         else
                         {
                             LoaiSanDAO.Instance.SuaLoaiSan(maLoai, tenLoai, giaThue);
@@ -283,7 +311,7 @@ namespace QLSanBong
                     }
                     catch
                     {
-                        MessageBox.Show("Vui lòng nhập giá thuê!");
+                        MessageBox.Show("Vui lòng nhập đúng định dạng giá thuê!");
                     }
 
                 }
