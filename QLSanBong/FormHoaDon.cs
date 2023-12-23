@@ -50,22 +50,62 @@ namespace QLSanBong
             if(flag == 1)
             {
                 reportViewer2.LocalReport.ReportPath = "ReportHoaDon.rdlc";
-                ReportDataSource reportDataSource = new ReportDataSource("DataSetHoaDon", listHD);
+                ReportDataSource reportDataSourceHD = new ReportDataSource("DataSetHoaDon", listHD);
                 reportViewer2.LocalReport.DataSources.Clear();
-                reportViewer2.LocalReport.DataSources.Add(reportDataSource);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceHD);
                 List<ChiTietHoaDon> listcthd = ChiTietHDDAO.Instance.getCTHoaDon(MaHD);
-                foreach (var item in listcthd)
-                {
-                    List<DichVu> dv = DichVuDAO.Instance.getDichVu(item.MaDV);
-                    ReportDataSource reportDataSource2 = new ReportDataSource("DataSetDichVu", dv);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
-                }
+                ReportDataSource reportDataSourceCTHD = new ReportDataSource("DataSetCTHD", listcthd);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceCTHD);
+                List<San> listSan = new List<San>();
                 foreach (var item in listHD)
                 {
-                    List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH(item.MaKH);
-                    ReportDataSource reportDataSource2 = new ReportDataSource("DataSetKhachHang", listKH);
-                    reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
+                    San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                    listSan.Add(san);
                 }
+                ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceSan);
+                List<DichVu> listDV = new List<DichVu>();
+                foreach (var item in listcthd)
+                {
+                    DichVu dv = DichVuDAO.Instance.getDichVu(item.MaDV);
+                    listDV.Add(dv);
+                }
+                ReportDataSource reportDataSourceDV = new ReportDataSource("DataSetDichVu", listDV);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceDV);
+                List<KhachHang> listKH = new List<KhachHang>();
+                foreach (var item in listHD)
+                {
+                    KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                    listKH.Add(kh);
+                }
+                ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceKH);
+                this.reportViewer2.RefreshReport();
+            } else
+            {
+                reportViewer2.LocalReport.ReportPath = "ReportHoaDonKhongDV.rdlc";
+                ReportDataSource reportDataSourceHD = new ReportDataSource("DataSetHoaDon", listHD);
+                reportViewer2.LocalReport.DataSources.Clear();
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceHD);
+                List<ChiTietHoaDon> listcthd = ChiTietHDDAO.Instance.getCTHoaDon(MaHD);
+                ReportDataSource reportDataSourceCTHD = new ReportDataSource("DataSetCTHD", listcthd);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceCTHD);
+                List<San> listSan = new List<San>();
+                foreach (var item in listHD)
+                {
+                    San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                    listSan.Add(san);
+                }
+                ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceSan);
+                List<KhachHang> listKH = new List<KhachHang>();
+                foreach (var item in listHD)
+                {
+                    KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                    listKH.Add(kh);
+                }
+                ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+                reportViewer2.LocalReport.DataSources.Add(reportDataSourceKH);
                 this.reportViewer2.RefreshReport();
             }
         }

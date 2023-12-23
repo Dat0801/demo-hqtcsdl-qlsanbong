@@ -573,6 +573,19 @@ namespace QLSanBong
                 ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                List<San> listSan = new List<San>();
+                List<KhachHang> listKH = new List<KhachHang>();
+                foreach (var item in listHD)
+                {
+                    San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                    listSan.Add(san);
+                    KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                    listKH.Add(kh);
+                }
+                ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+                reportViewer1.LocalReport.DataSources.Add(reportDataSourceSan);
+                ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+                reportViewer1.LocalReport.DataSources.Add(reportDataSourceKH);
                 this.reportViewer1.RefreshReport();
                 decimal TongDT = 0;
                 foreach (var item in listHD)
@@ -606,6 +619,19 @@ namespace QLSanBong
                 ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
                 reportViewer1.LocalReport.DataSources.Clear();
                 reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+                List<San> listSan = new List<San>();
+                List<KhachHang> listKH = new List<KhachHang>();
+                foreach (var item in listHD)
+                {
+                    San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                    listSan.Add(san);
+                    KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                    listKH.Add(kh);
+                }
+                ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+                reportViewer1.LocalReport.DataSources.Add(reportDataSourceSan);
+                ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+                reportViewer1.LocalReport.DataSources.Add(reportDataSourceKH);
                 this.reportViewer1.RefreshReport();
                 decimal TongDT = 0;
                 foreach (var item in listHD)
@@ -710,13 +736,23 @@ namespace QLSanBong
         private void FormQuanLyKinhDoanh_Load(object sender, EventArgs e)
         {
             List<HoaDon> listHD = HoaDonDAO.Instance.LoadListHoaDon();
-            List<DichVu> dv = DichVuDAO.Instance.LoadListDichVu();
             reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
             ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
-            ReportDataSource reportDataSource2 = new ReportDataSource("DataSetDichVu", dv);
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
-            reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            List<San> listSan = new List<San>();
+            List<KhachHang> listKH = new List<KhachHang>();
+            foreach (var item in listHD)
+            {
+                San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                listSan.Add(san);
+                KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                listKH.Add(kh);
+            }
+            ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+            reportViewer1.LocalReport.DataSources.Add(reportDataSourceSan);
+            ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+            reportViewer1.LocalReport.DataSources.Add(reportDataSourceKH);
             this.reportViewer1.RefreshReport();
         }
 

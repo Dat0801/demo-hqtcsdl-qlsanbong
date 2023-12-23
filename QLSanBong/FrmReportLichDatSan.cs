@@ -27,6 +27,19 @@ namespace QLSanBong
             var source = new ReportDataSource("LichDatSanDataSet", listLDS);
             reportViewer2.LocalReport.DataSources.Clear();
             reportViewer2.LocalReport.DataSources.Add(source);
+            List<San> listSan = new List<San>();
+            List<KhachHang> listKH = new List<KhachHang>();
+            foreach (var item in listLDS)
+            {
+                San san = SanDAO.Instance.LoadListSan(item.MaSan);
+                listSan.Add(san);
+                KhachHang kh = KhachHangDAO.Instance.LoadListKH(item.MaKH);
+                listKH.Add(kh);
+            }
+            ReportDataSource reportDataSourceSan = new ReportDataSource("DataSetSan", listSan);
+            reportViewer2.LocalReport.DataSources.Add(reportDataSourceSan);
+            ReportDataSource reportDataSourceKH = new ReportDataSource("DataSetKhachHang", listKH);
+            reportViewer2.LocalReport.DataSources.Add(reportDataSourceKH);
             this.reportViewer2.RefreshReport();
         }
     }

@@ -32,29 +32,25 @@ namespace QLSanBong.DAO
             return listKH;
         }
 
-        public List<KhachHang> LoadListKH(int MaKH)
+        public KhachHang LoadListKH(int MaKH)
         {
             List<KhachHang> listKH = new List<KhachHang>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from KhachHang where MaKH = '"+ MaKH +"'");
-            foreach (DataRow row in data.Rows)
-            {
-                KhachHang kh = new KhachHang(row);
-                listKH.Add(kh);
-            }
-            return listKH;
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from KhachHang where MaKH = '" + MaKH + "'");
+            KhachHang kh = new KhachHang(data.Rows[0]);
+            return kh;
         }
 
-        public int ThemKhachHang(string tenkh, string diachi,  string sdt)
+        public int ThemKhachHang(string tenkh, string diachi, string sdt)
         {
             string query = "SP_ThemKhachHang @TenKH , @DiaChi , @SDT";
             //DataTable result = DataProvider.Instance.ExecuteQuery(query);
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenkh, diachi, sdt });
             return result;
         }
-        public int SuaDanhSach( string tenkh,  string diachi, string sdt, int makh)
+        public int SuaDanhSach(string tenkh, string diachi, string sdt, int makh)
         {
             string query = "SP_SuaDanhSachKH @TenKH , @DiaChi , @SDT , @MaKH";
-            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  tenkh, diachi, sdt , makh });
+            int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenkh, diachi, sdt, makh });
             return result;
         }
         public List<KhachHang> timKiemKhachHang(string tenKhachHang)

@@ -36,23 +36,31 @@ namespace QLSanBong.DAO
             return ListSan;
         }
 
+        public San LoadListSan(int MaSan)
+        {
+            List<San> ListSan = new List<San>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from SanBong where MaSan = '" + MaSan + "'");
+            San san = new San(data.Rows[0]);
+            return san;
+        }
+
         public int ThemSan(string tenSan, string maLoai)
         {
             string query = "SP_ThemSan @TenSan , @MaLoai";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { tenSan, maLoai });
             return result;
-        } 
+        }
 
         public bool KiemTraTrungTenSan(string tenSan)
         {
             string query = "SP_KiemTraTrungTenSan @TenSan";
-            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { tenSan});
+            DataTable result = DataProvider.Instance.ExecuteQuery(query, new object[] { tenSan });
             return result.Rows.Count > 0;
         }
 
         public int XoaSan(int maSan)
         {
-            
+
             string query = "SP_XoaSan @MaSan";
             int result = DataProvider.Instance.ExecuteNonQuery(query, new object[] { maSan });
             return result;
@@ -69,7 +77,7 @@ namespace QLSanBong.DAO
         {
             List<San> ListSan = new List<San>();
             string query = "SP_TimKiemSan @TenSan";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] {tenSan});
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { tenSan });
             foreach (DataRow row in data.Rows)
             {
                 San san = new San(row);
