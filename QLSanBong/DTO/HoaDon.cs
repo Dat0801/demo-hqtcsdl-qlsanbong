@@ -12,6 +12,7 @@ namespace QLSanBong.DTO
         public int MaHD { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayDatSan { get; set; }
+        public DateTime NgayTraSan { get; set; }
         public int MaSan { get; set; }
         public int MaKH { get; set; }
         public int TongPhut { get; set; }
@@ -24,6 +25,7 @@ namespace QLSanBong.DTO
             this.MaHD = (int)row["MaHD"];
             this.NgayTao = (DateTime)row["NgayTao"];
             this.NgayDatSan = (DateTime)row["NgayDatSan"];
+            this.NgayTraSan = (DateTime)row["NgayTraSan"];
             this.MaSan = (int)row["MaSan"];
             this.MaKH = (int)row["MaKH"];
             this.TongPhut = (int)row["TongPhut"];

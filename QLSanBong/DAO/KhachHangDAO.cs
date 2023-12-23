@@ -32,6 +32,18 @@ namespace QLSanBong.DAO
             return listKH;
         }
 
+        public List<KhachHang> LoadListKH(int MaKH)
+        {
+            List<KhachHang> listKH = new List<KhachHang>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from KhachHang where MaKH = '"+ MaKH +"'");
+            foreach (DataRow row in data.Rows)
+            {
+                KhachHang kh = new KhachHang(row);
+                listKH.Add(kh);
+            }
+            return listKH;
+        }
+
         public int ThemKhachHang(string tenkh, string diachi,  string sdt)
         {
             string query = "SP_ThemKhachHang @TenKH , @DiaChi , @SDT";

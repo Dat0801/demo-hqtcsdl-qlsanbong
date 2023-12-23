@@ -1,4 +1,5 @@
-﻿using QLSanBong.DAO;
+﻿using Buoi8.Utilities;
+using QLSanBong.DAO;
 using QLSanBong.DTO;
 using System;
 using System.Collections.Generic;
@@ -29,13 +30,13 @@ namespace QLSanBong
         private void btn_Them_Click(object sender, EventArgs e)
         {
             string UserName = txt_TK.Text;
-            string Password = txt_MK.Text;
+            string password = Password.Create_MD5(txt_MK.Text);
             string DisplayName = txt_tenHT.Text;
             if (UserName == "")
             {
                 MessageBox.Show("Vui lòng nhập tài khoản");
             }
-            else if (string.IsNullOrEmpty(Password))
+            else if (string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu");
             }
@@ -51,7 +52,8 @@ namespace QLSanBong
                 {
 
                     string Role = cb_Quyen.Text;
-                    AccountDAO.Instance.ThemTaiKhoan(UserName, Password, DisplayName, Role);
+                    
+                    AccountDAO.Instance.ThemTaiKhoan(UserName, password, DisplayName, Role);
                 }
             }
             loadAccount();
@@ -81,13 +83,13 @@ namespace QLSanBong
         private void btn__Sua_Click(object sender, EventArgs e)
         {
             string UserName = txt_TK.Text;
-            string Password = txt_MK.Text;
+            string password = Password.Create_MD5(txt_MK.Text);
             string DisplayName = txt_tenHT.Text;
             if (UserName == "")
             {
                 MessageBox.Show("Vui lòng nhập tài khoản");
             }
-            else if (string.IsNullOrEmpty(Password))
+            else if (string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu");
             }
@@ -98,7 +100,7 @@ namespace QLSanBong
             else
             {
                 string Role = cb_Quyen.Text;
-                AccountDAO.Instance.SuaTaiKhoan(UserName, Password, DisplayName, Role);
+                AccountDAO.Instance.SuaTaiKhoan(UserName, password, DisplayName, Role);
                 MessageBox.Show("Sửa thông tin tài khoản thành công!");
             }
             loadAccount();

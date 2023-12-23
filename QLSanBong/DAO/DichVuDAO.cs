@@ -32,6 +32,20 @@ namespace QLSanBong.DAO
             return listDichVu;
 
         }
+
+        public List<DichVu> getDichVu(int MaDV)
+        {
+            List<DichVu> listDichVu = new List<DichVu>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from DichVu where MaDV = '"+ MaDV +"'");
+            foreach (DataRow row in data.Rows)
+            {
+                DichVu dichvu = new DichVu(row);
+                listDichVu.Add(dichvu);
+            }
+            return listDichVu;
+
+        }
+
         public List<DichVu> TimKiemdicvu(string tenDV)
         {
             List<DichVu> ListDV = new List<DichVu>();

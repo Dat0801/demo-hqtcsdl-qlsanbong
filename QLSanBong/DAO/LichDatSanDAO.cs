@@ -54,5 +54,16 @@ namespace QLSanBong.DAO
             return result;
         }
 
+        public LichDatSan getLichDatSan(int MaKH)
+        {
+            LichDatSan lds = new LichDatSan();
+            DataTable data = DataProvider.Instance.ExecuteQuery("select * from LichDatSan where MaKH = '"+ MaKH +"'");
+            foreach (DataRow row in data.Rows)
+            {
+                lds = new LichDatSan(row);
+            }
+            return lds;
+        }
+
     }
 }

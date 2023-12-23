@@ -32,6 +32,18 @@ namespace QLSanBong.DAO
             }
             return ListHD;
         }
+
+        public List<ChiTietHoaDon> getCTHoaDon(int MaHD)
+        {
+            List<ChiTietHoaDon> ListHD = new List<ChiTietHoaDon>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from ChiTietHD where MaHD = '"+ MaHD +"'");
+            foreach (DataRow row in data.Rows)
+            {
+                ChiTietHoaDon hd = new ChiTietHoaDon(row);
+                ListHD.Add(hd);
+            }
+            return ListHD;
+        }
         public int ThemCTHD(int maHD, int maDV, int soLuong)
         {
             List<ChiTietHoaDon> listCTHD = LoadListLoadCTHD();

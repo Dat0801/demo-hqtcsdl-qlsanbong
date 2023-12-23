@@ -52,8 +52,6 @@ namespace QLSanBong
             this.tab_HoaDon = new System.Windows.Forms.TabPage();
             this.txt_MaHD = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
             this.dateTimePicker_NgayBD = new System.Windows.Forms.DateTimePicker();
             this.txt_Tongtien = new System.Windows.Forms.TextBox();
             this.txt_Dongia = new System.Windows.Forms.TextBox();
@@ -306,8 +304,6 @@ namespace QLSanBong
             // 
             this.tab_HoaDon.Controls.Add(this.txt_MaHD);
             this.tab_HoaDon.Controls.Add(this.label14);
-            this.tab_HoaDon.Controls.Add(this.button3);
-            this.tab_HoaDon.Controls.Add(this.btnXoa);
             this.tab_HoaDon.Controls.Add(this.dateTimePicker_NgayBD);
             this.tab_HoaDon.Controls.Add(this.txt_Tongtien);
             this.tab_HoaDon.Controls.Add(this.txt_Dongia);
@@ -348,32 +344,6 @@ namespace QLSanBong
             this.label14.TabIndex = 50;
             this.label14.Text = "Mã Hóa đơn";
             // 
-            // button3
-            // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(997, 126);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(131, 70);
-            this.button3.TabIndex = 43;
-            this.button3.Text = "Sửa";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btn_SuaHD_Click);
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(997, 53);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(131, 61);
-            this.btnXoa.TabIndex = 42;
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
             // dateTimePicker_NgayBD
             // 
             this.dateTimePicker_NgayBD.CustomFormat = "dd/MM/yyyy";
@@ -388,6 +358,7 @@ namespace QLSanBong
             this.txt_Tongtien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_Tongtien.Location = new System.Drawing.Point(812, 151);
             this.txt_Tongtien.Name = "txt_Tongtien";
+            this.txt_Tongtien.ReadOnly = true;
             this.txt_Tongtien.Size = new System.Drawing.Size(100, 28);
             this.txt_Tongtien.TabIndex = 24;
             // 
@@ -405,6 +376,7 @@ namespace QLSanBong
             this.txt_PhutDa.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_PhutDa.Location = new System.Drawing.Point(812, 71);
             this.txt_PhutDa.Name = "txt_PhutDa";
+            this.txt_PhutDa.ReadOnly = true;
             this.txt_PhutDa.Size = new System.Drawing.Size(100, 28);
             this.txt_PhutDa.TabIndex = 22;
             // 
@@ -413,6 +385,7 @@ namespace QLSanBong
             this.txt_MaSan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txt_MaSan.Location = new System.Drawing.Point(409, 92);
             this.txt_MaSan.Name = "txt_MaSan";
+            this.txt_MaSan.ReadOnly = true;
             this.txt_MaSan.Size = new System.Drawing.Size(178, 28);
             this.txt_MaSan.TabIndex = 20;
             // 
@@ -711,8 +684,6 @@ namespace QLSanBong
         private System.Windows.Forms.TextBox txtTimKiemTenKH;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TabPage tab_HoaDon;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.DateTimePicker dateTimePicker_NgayBD;
         private System.Windows.Forms.TextBox txt_Tongtien;
         private System.Windows.Forms.TextBox txt_Dongia;

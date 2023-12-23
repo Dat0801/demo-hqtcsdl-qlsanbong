@@ -32,6 +32,31 @@ namespace QLSanBong.DAO
             return listHoaDon;
         }
 
+        public List<HoaDon> LoadListHoaDonDaThanhToan()
+        {
+            List<HoaDon> listHoaDon = new List<HoaDon>();
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select * from HoaDon where TrangThai = N'Đã thanh toán'");
+            foreach (DataRow row in data.Rows)
+            {
+                HoaDon hoaDon = new HoaDon(row);
+                listHoaDon.Add(hoaDon);
+            }
+            return listHoaDon;
+        }
+
+        public List<HoaDon> LoadListHoaDon(int maHD)
+        {
+            List<HoaDon> listHoaDon = new List<HoaDon>();
+            string query = "Select * from HoaDon where MaHD = '" + maHD + "'";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            foreach (DataRow row in data.Rows)
+            {
+                HoaDon hoaDon = new HoaDon(row);
+                listHoaDon.Add(hoaDon);
+            }
+            return listHoaDon;
+        }
+
         public HoaDon getHoaDon(int maHD)
         {
             string query = "Select * from HoaDon where MaHD = '" + maHD + "'";

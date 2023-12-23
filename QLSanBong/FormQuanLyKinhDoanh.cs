@@ -60,35 +60,44 @@ namespace QLSanBong
 
         private void btnThemDV_Click(object sender, EventArgs e)
         {
-            int maDV = int.Parse(txt_MaDV.Text);
-            string tenDV = txt_tenDV.Text;
-            if (tenDV == "")
+            try
             {
-                MessageBox.Show("Vui lòng nhập tên dịch vụ!");
-            }
-            else
-            {
-                try
+                int maDV = 0;
+                if (txtMaKH.Text != "")
+                    maDV = int.Parse(txt_MaDV.Text);
+                string tenDV = txt_tenDV.Text;
+                if (tenDV == "")
                 {
-                    int giaDV = int.Parse(txt_dongiaDV.Text);
-                    if (giaDV <= 0)
-                        MessageBox.Show("Nhập giá lớn hơn 0!");
-                    else if (DichVuDAO.Instance.KiemTraTrungTenDV(tenDV))
-                        MessageBox.Show("Dịch vụ đã tồn tại!");
-                    else
+                    MessageBox.Show("Vui lòng nhập tên dịch vụ!");
+                }
+                else
+                {
+                    try
                     {
-                        DichVuDAO.Instance.ThemDV(tenDV, giaDV);
-                        txt_dongiaDV.Clear();
-                        txt_tenDV.Clear();
-                    }
+                        int giaDV = int.Parse(txt_dongiaDV.Text);
+                        if (giaDV <= 0)
+                            MessageBox.Show("Nhập giá lớn hơn 0!");
+                        else if (DichVuDAO.Instance.KiemTraTrungTenDV(tenDV))
+                            MessageBox.Show("Dịch vụ đã tồn tại!");
+                        else
+                        {
+                            DichVuDAO.Instance.ThemDV(tenDV, giaDV);
+                            txt_dongiaDV.Clear();
+                            txt_tenDV.Clear();
+                        }
 
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Vui lòng nhập giá");
+                    }
                 }
-                catch
-                {
-                    MessageBox.Show("Vui lòng nhập giá");
-                }
+                loadDichVu();
             }
-            loadDichVu();
+            catch
+            {
+                MessageBox.Show("Vui lòng nhập thông tin muốn thêm!");
+            }
         }
 
         private void dgv_DichVu_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -148,41 +157,50 @@ namespace QLSanBong
         {
             try
             {
-                int maDV = int.Parse(txt_MaDV.Text);
-                string tenDV = txt_tenDV.Text;
-                if (tenDV == "")
-                    MessageBox.Show("Vui lòng nhập tên dịch vụ!");
-                else
+                int maDV = 0;
+                if (txt_MaDV.Text != "")
                 {
-                    try
+                    maDV = int.Parse(txt_MaDV.Text);
+                    string tenDV = txt_tenDV.Text;
+                    if (tenDV == "")
+                        MessageBox.Show("Vui lòng nhập tên dịch vụ!");
+                    else
                     {
-                        int gia = int.Parse(txt_dongiaDV.Text);
-                        List<DichVu> listDV = DichVuDAO.Instance.LoadListDichVu();
-                        int flag = 0;
-                        foreach (var item in listDV)
+                        try
                         {
-                            if (item.TenDV == tenDV && item.MaDV != maDV)
+                            int gia = int.Parse(txt_dongiaDV.Text);
+                            List<DichVu> listDV = DichVuDAO.Instance.LoadListDichVu();
+                            int flag = 0;
+                            foreach (var item in listDV)
                             {
-                                flag = 1;
+                                if (item.TenDV == tenDV && item.MaDV != maDV)
+                                {
+                                    flag = 1;
+                                }
+                            }
+                            if (gia <= 0)
+                                MessageBox.Show("Vui lòng nhập giá lớn hơn 0!");
+                            else if (flag == 1)
+                            {
+                                MessageBox.Show("Tên dịch vụ đã tồn tại!");
+                            }
+                            else
+                            {
+                                DichVuDAO.Instance.SuaDicVu(maDV, tenDV, gia);
+                                MessageBox.Show("Sửa thành công");
                             }
                         }
-                        if (gia <= 0)
-                            MessageBox.Show("Vui lòng nhập giá lớn hơn 0!");
-                        else if (flag == 1)
+                        catch
                         {
-                            MessageBox.Show("Tên dịch vụ đã tồn tại!");
+                            MessageBox.Show("Vui lòng nhập giá!");
                         }
-                        else
-                        {
-                            DichVuDAO.Instance.SuaDicVu(maDV, tenDV, gia);
-                            MessageBox.Show("Sửa thành công");
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Vui lòng nhập giá!");
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn mã dịch vụ muốn sửa!");
+                }
+
             }
             catch
             {
@@ -353,96 +371,114 @@ namespace QLSanBong
         private void btnThemKH_Click(object sender, EventArgs e)
         {
             string tenKhachHang = txt_TenKH.Text;
-            int makh = int.Parse(txtMaKH.Text);
-            if (tenKhachHang == "")
+            try
             {
-                MessageBox.Show("Vui lòng nhập tên khách hàng");
-            }
-            else
-            {
-                string diachi = txt_DiaChi.Text;
-                string sdt = txt_SDT.Text;
-                if(sdt == "")
+                int makh = 0;
+                if (txtMaKH.Text != "")
+                    makh = int.Parse(txtMaKH.Text);
+                if (tenKhachHang == "")
                 {
-                    MessageBox.Show("Vui lòng nhập số điện thoại!");
-                }
-                else if(!IsValidPhoneNumber(sdt))
-                {
-                    MessageBox.Show("Số điện thoại không hợp lệ!");
-                    txt_SDT.Clear();
+                    MessageBox.Show("Vui lòng nhập tên khách hàng");
                 }
                 else
                 {
-                    List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
-                    int flag = 0;
-                    foreach (var item in listKH)
+                    string diachi = txt_DiaChi.Text;
+                    string sdt = txt_SDT.Text;
+                    if (sdt == "")
                     {
-                        if (item.SDT == sdt && item.MaKH == makh)
-                        {
-                            flag = 1;
-                        }
+                        MessageBox.Show("Vui lòng nhập số điện thoại!");
                     }
-                    if (flag == 1)
+                    else if (!IsValidPhoneNumber(sdt))
                     {
-                        MessageBox.Show("Số điện thoại đã tồn tại!");
+                        MessageBox.Show("Số điện thoại không hợp lệ!");
+                        txt_SDT.Clear();
                     }
                     else
                     {
-                        KhachHangDAO.Instance.ThemKhachHang(tenKhachHang, diachi, sdt);
-                        txt_TenKH.Clear();
-                        txt_DiaChi.Clear();
-                        txt_SDT.Clear();
+                        List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
+                        int flag = 0;
+                        foreach (var item in listKH)
+                        {
+                            if (item.SDT == sdt && item.MaKH == makh)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 1)
+                        {
+                            MessageBox.Show("Số điện thoại đã tồn tại!");
+                        }
+                        else
+                        {
+                            KhachHangDAO.Instance.ThemKhachHang(tenKhachHang, diachi, sdt);
+                            MessageBox.Show("Thêm thành công!");
+                            txt_TenKH.Clear();
+                            txt_DiaChi.Clear();
+                            txt_SDT.Clear();
+                        }
                     }
                 }
+                loadKhachHang();
             }
-            loadKhachHang();
+            catch
+            {
+                MessageBox.Show("Vui lòng nhập thông tin muốn thêm!");
+            }
+
         }
 
         private void btnSuaKH_Click(object sender, EventArgs e)
         {
-            string tenKhachHang = txt_TenKH.Text;
-            int makh = int.Parse(txtMaKH.Text);
-            if (tenKhachHang == "")
+            try
             {
-                MessageBox.Show("Vui lòng nhập tên khách hàng");
-            }
+                string tenKhachHang = txt_TenKH.Text;
+                int makh = int.Parse(txtMaKH.Text);
+                if (tenKhachHang == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên khách hàng");
+                }
 
-            else
-            {
-                string diachi = txt_DiaChi.Text;
-                string sdt = txt_SDT.Text;
-                if (sdt == "")
-                {
-                    MessageBox.Show("Vui lòng nhập số điện thoại!");
-                }
-                else if (!IsValidPhoneNumber(sdt))
-                {
-                    MessageBox.Show("Số điện thoại không hợp lệ!");
-                    txt_SDT.Clear();
-                }
                 else
                 {
-                    List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
-                    int flag = 0;
-                    foreach (var item in listKH)
+                    string diachi = txt_DiaChi.Text;
+                    string sdt = txt_SDT.Text;
+                    if (sdt == "")
                     {
-                        if (item.SDT == sdt && item.MaKH != makh)
+                        MessageBox.Show("Vui lòng nhập số điện thoại!");
+                    }
+                    else if (!IsValidPhoneNumber(sdt))
+                    {
+                        MessageBox.Show("Số điện thoại không hợp lệ!");
+                        txt_SDT.Clear();
+                    }
+                    else
+                    {
+                        List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
+                        int flag = 0;
+                        foreach (var item in listKH)
                         {
-                            flag = 1;
+                            if (item.SDT == sdt && item.MaKH != makh)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 1)
+                        {
+                            MessageBox.Show("Số điện thoại đã tồn tại!");
+                        }
+                        else
+                        {
+                            KhachHangDAO.Instance.SuaDanhSach(tenKhachHang, diachi, sdt, makh);
+                            MessageBox.Show("Sửa thành công!");
                         }
                     }
-                    if (flag == 1)
-                    {
-                        MessageBox.Show("Số điện thoại đã tồn tại!");
-                    } else
-                    {
-                        KhachHangDAO.Instance.SuaDanhSach(tenKhachHang, diachi, sdt, makh);
-                        MessageBox.Show("Sửa thành công!");
-                    }
                 }
+                loadKhachHang();
             }
-            loadKhachHang();
-
+            catch
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng muốn sửa!");
+            }
         }
         private void dataGridView_DSKH_Click(object sender, EventArgs e)
         {
@@ -592,13 +628,20 @@ namespace QLSanBong
             r = MessageBox.Show("Bạn có chắc muốn xóa chi tiết hóa đơn?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (r == DialogResult.Yes)
             {
-                int result = ChiTietHDDAO.Instance.XoaCTHD(maHD, maDV);
-                if (result > 0)
+                HoaDon hd = HoaDonDAO.Instance.getHoaDon(maHD);
+                if (hd.TrangThai == "Đã thanh toán")
                 {
-                    MessageBox.Show("Xóa chi tiết hóa đơn thành công!");
-                    loadCTHD();
+                    MessageBox.Show("Không thể xóa dịch vụ do hóa đơn đã thanh toán!");
+                } else
+                {
+                    int result = ChiTietHDDAO.Instance.XoaCTHD(maHD, maDV);
+                    if (result > 0)
+                    {
+                        MessageBox.Show("Xóa chi tiết hóa đơn thành công!");
+                        loadCTHD();
+                    }
+                    loadHoaDon();
                 }
-                loadHoaDon();
             }
         }
 
@@ -667,10 +710,13 @@ namespace QLSanBong
         private void FormQuanLyKinhDoanh_Load(object sender, EventArgs e)
         {
             List<HoaDon> listHD = HoaDonDAO.Instance.LoadListHoaDon();
+            List<DichVu> dv = DichVuDAO.Instance.LoadListDichVu();
             reportViewer1.LocalReport.ReportPath = "ReportDoanhThu.rdlc";
             ReportDataSource reportDataSource = new ReportDataSource("DataSetDoanhThu", listHD);
+            ReportDataSource reportDataSource2 = new ReportDataSource("DataSetDichVu", dv);
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(reportDataSource);
+            reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.RefreshReport();
         }
 
@@ -679,6 +725,12 @@ namespace QLSanBong
             string pattern = @"^0\d{3}\d{3}\d{3}$";
             Regex regex = new Regex(pattern);
             return regex.IsMatch(phoneNumber);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormHoaDon fHoaDon = new FormHoaDon();
+            fHoaDon.ShowDialog();
         }
     }
 }

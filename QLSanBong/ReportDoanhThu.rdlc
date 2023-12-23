@@ -9,6 +9,13 @@
       </ConnectionProperties>
       <rd:DataSourceID>287cbd53-f605-49dd-84a4-137b19460599</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="QLSanBongDTO1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a96ab65d-46f9-4d40-8110-836a539224e2</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSetDoanhThu">
@@ -552,7 +559,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.475in</Height>
+        <Height>3.68833in</Height>
         <Style />
       </Body>
       <Width>10.54584in</Width>

@@ -1,4 +1,5 @@
-﻿using QLSanBong;
+﻿using Buoi8.Utilities;
+using QLSanBong;
 using QLSanBong.DAO;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace QL_SanBong
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
             string username = txtUserName.Text;
-            string password = txtPassword.Text;
-            if(Login(username, password))
+            string password = Password.Create_MD5(txtPassword.Text);
+            if (Login(username, password))
             {
                 this.Hide();
                 if (getRole(username,password) == 1)

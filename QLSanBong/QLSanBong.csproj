@@ -100,6 +100,12 @@
     <Compile Include="FormDatSan.Designer.cs">
       <DependentUpon>FormDatSan.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHoaDon.Designer.cs">
+      <DependentUpon>FormHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,11 +150,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLSANBONGDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLSANBONGDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Password.cs" />
     <EmbeddedResource Include="FormAdmin.resx">
       <DependentUpon>FormAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDatSan.resx">
       <DependentUpon>FormDatSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHoaDon.resx">
+      <DependentUpon>FormHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
@@ -185,12 +200,21 @@
     <EmbeddedResource Include="ReportDoanhThu.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportHoaDon.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportLDS.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.Account.datasource" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.ChiTietHoaDon.datasource" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.DichVu.datasource" />
     <None Include="Properties\DataSources\QLSanBong.DTO.HoaDon.datasource" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.KhachHang.datasource" />
     <None Include="Properties\DataSources\QLSanBong.DTO.LichDatSan.datasource" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.LoaiSan.datasource" />
+    <None Include="Properties\DataSources\QLSanBong.DTO.San.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -205,6 +229,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="QLSANBONGDataSet.xsc">
+      <DependentUpon>QLSANBONGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLSANBONGDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLSANBONGDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLSANBONGDataSet.xss">
+      <DependentUpon>QLSANBONGDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Resources\san.png" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +280,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

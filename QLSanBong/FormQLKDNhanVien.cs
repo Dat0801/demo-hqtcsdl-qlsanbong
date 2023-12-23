@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -39,17 +40,30 @@ namespace QLSanBong
                     int selectedRowIndex = dgv_HoaDon.SelectedCells[0].RowIndex;
                     DataGridViewRow selectedRow = dgv_HoaDon.Rows[selectedRowIndex];
                     int maHD = Convert.ToInt32(selectedRow.Cells["MaHD"].Value);
-                    int result = HoaDonDAO.Instance.XoaHoaDon(maHD);
-
-                    if (result > 0)
+                    string TrangThai = Convert.ToString(selectedRow.Cells["TrangThai"].Value);
+                    if (TrangThai == "Đã thanh toán")
                     {
-                        loadHoaDon();
-                        MessageBox.Show("Xóa thành công!");
+                        DialogResult r;
+                        r = MessageBox.Show("Bạn có chắc muốn xóa hóa đơn?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                        if (r == DialogResult.Yes)
+                        {
+                            int result = HoaDonDAO.Instance.XoaHoaDon(maHD);
+                            if (result > 0)
+                            {
+                                loadHoaDon();
+                                MessageBox.Show("Xóa thành công!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Xóa không thành công!");
+                            }
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Xóa không thành công!");
+                        MessageBox.Show("Không thể xóa do hóa đơn chưa thanh toán!");
                     }
+
                 }
                 else
                 {
@@ -196,20 +210,40 @@ namespace QLSanBong
             {
                 int maHD = Convert.ToInt32(cbo_MaHD.SelectedValue);
                 int maDV = Convert.ToInt32(cbo_MaDV.SelectedValue);
-                int soLuong = Convert.ToInt32(txt_SoLuong.Text);
-
-
-                int result = ChiTietHDDAO.Instance.ThemCTHD(maHD, maDV, soLuong);
-
-                if (result > 0)
+                try
                 {
-                    MessageBox.Show("Thêm chi tiết hóa đơn thành công!");
-                    loadCTHD();
+                    int soluong = Convert.ToInt32(txt_SoLuong.Text);
+                    if (soluong <= 0)
+                    {
+                        MessageBox.Show("Vui lòng nhập số lượng lớn hơn 0!");
+                    }
+                    else
+                    {
+                        HoaDon hd = HoaDonDAO.Instance.getHoaDon(maHD);
+                        if (hd.TrangThai == "Đã thanh toán")
+                        {
+                            MessageBox.Show("Không thể thêm dịch vụ do hóa đơn đã thanh toán!");
+                        }
+                        else
+                        {
+                            int result = ChiTietHDDAO.Instance.ThemCTHD(maHD, maDV, soluong);
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Thêm chi tiết hóa đơn thành công!");
+                                loadCTHD();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không thể thêm chi tiết hóa đơn. Vui lòng thử lại!");
+                            }
+                        }
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Không thể thêm chi tiết hóa đơn. Vui lòng thử lại!");
+                    MessageBox.Show("Số lượng không hợp lệ!");
                 }
+
             }
             else
             {
@@ -222,17 +256,18 @@ namespace QLSanBong
         {
             int maDV = int.Parse(cbo_MaDV.SelectedValue.ToString());
             int maHD = int.Parse(cbo_MaHD.SelectedValue.ToString());
-            int result = ChiTietHDDAO.Instance.XoaCTHD(maHD, maDV);
-            if (result > 0)
+            DialogResult r;
+            r = MessageBox.Show("Bạn có chắc muốn xóa chi tiết hóa đơn?", "Thoát", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (r == DialogResult.Yes)
             {
-                MessageBox.Show("Xóa chi tiết hóa đơn thành công!");
-                loadCTHD();
+                int result = ChiTietHDDAO.Instance.XoaCTHD(maHD, maDV);
+                if (result > 0)
+                {
+                    MessageBox.Show("Xóa chi tiết hóa đơn thành công!");
+                    loadCTHD();
+                }
+                loadHoaDon();
             }
-            else
-            {
-                MessageBox.Show("Không thể xóa chi tiết hóa đơn. Vui lòng thử lại!");
-            }
-            loadHoaDon();
         }
 
         private void btn_SuaCTHD_Click(object sender, EventArgs e)
@@ -249,33 +284,48 @@ namespace QLSanBong
 
             if (maHD != 0)
             {
-                int madv = 0;
-                if (int.TryParse(cbo_MaDV.SelectedValue.ToString(), out madv))
+                try
                 {
-                    int soluong = 0;
-                    if (int.TryParse(txt_SoLuong.Text, out soluong))
+                    int madv = int.Parse(cbo_MaDV.SelectedValue.ToString());
+                    try
                     {
-                        int result = ChiTietHDDAO.Instance.SuaCTHD(maHD, madv, soluong);
-                        if (result > 0)
+                        int soluong = int.Parse(txt_SoLuong.Text);
+                        if (soluong <= 0)
                         {
-                            MessageBox.Show("Sửa chi tiết hóa đơn thành công!");
-                            loadCTHD();
-                        }
-                        else if (result == 0)
-                        {
-                            MessageBox.Show("Hóa đơn không tồn tại hoặc không thể sửa!");
+                            MessageBox.Show("Vui lòng nhập số lượng lớn hơn 0!");
                         }
                         else
                         {
-                            MessageBox.Show("Lỗi khi sửa chi tiết hóa đơn!");
+                            HoaDon hd = HoaDonDAO.Instance.getHoaDon(maHD);
+                            if (hd.TrangThai == "Đã thanh toán")
+                            {
+                                MessageBox.Show("Không thể thay đổi dịch vụ do hóa đơn đã thanh toán!");
+                            }
+                            else
+                            {
+                                int result = ChiTietHDDAO.Instance.SuaCTHD(maHD, madv, soluong);
+                                if (result > 0)
+                                {
+                                    MessageBox.Show("Sửa chi tiết hóa đơn thành công!");
+                                    loadCTHD();
+                                }
+                                else if (result == 0)
+                                {
+                                    MessageBox.Show("Hóa đơn không tồn tại hoặc không thể sửa!");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Lỗi khi sửa chi tiết hóa đơn!");
+                                }
+                            }
                         }
                     }
-                    else
+                    catch
                     {
                         MessageBox.Show("Số lượng không hợp lệ.");
                     }
                 }
-                else
+                catch
                 {
                     MessageBox.Show("Vui lòng chọn Mã Dịch vụ.");
                 }
@@ -291,44 +341,118 @@ namespace QLSanBong
 
         private void btnThemKH_Click(object sender, EventArgs e)
         {
-            string tenKhachHang = txt_TenKH.Text;
-            if (tenKhachHang == "")
+            try
             {
-                MessageBox.Show("Vui lòng nhập tên khách hàng");
+                string tenKhachHang = txt_TenKH.Text;
+                int makh = int.Parse(txtMaKH.Text);
+                if (tenKhachHang == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên khách hàng");
+                }
+                else
+                {
+                    string diachi = txt_DiaChi.Text;
+                    string sdt = txt_SDT.Text;
+                    if (sdt == "")
+                    {
+                        MessageBox.Show("Vui lòng nhập số điện thoại!");
+                    }
+                    else if (!IsValidPhoneNumber(sdt))
+                    {
+                        MessageBox.Show("Số điện thoại không hợp lệ!");
+                        txt_SDT.Clear();
+                    }
+                    else
+                    {
+                        List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
+                        int flag = 0;
+                        foreach (var item in listKH)
+                        {
+                            if (item.SDT == sdt && item.MaKH == makh)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 1)
+                        {
+                            MessageBox.Show("Số điện thoại đã tồn tại!");
+                        }
+                        else
+                        {
+                            KhachHangDAO.Instance.ThemKhachHang(tenKhachHang, diachi, sdt);
+                            txt_TenKH.Clear();
+                            txt_DiaChi.Clear();
+                            txt_SDT.Clear();
+                        }
+                    }
+                }
+                loadKhachHang();
             }
-            else
+            catch
             {
-                string diachi = txt_DiaChi.Text;
-                string sdt = txt_SDT.Text;
-                KhachHangDAO.Instance.ThemKhachHang(tenKhachHang, diachi, sdt);
-                txt_TenKH.Clear();
-                txt_DiaChi.Clear();
-                txt_SDT.Clear();
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
             }
-            loadKhachHang();
+        }
+
+        private bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^0\d{3}\d{3}\d{3}$";
+            Regex regex = new Regex(pattern);
+            return regex.IsMatch(phoneNumber);
         }
 
         private void btnSuaKH_Click(object sender, EventArgs e)
         {
-            string tenKhachHang = "";
-
             try
             {
-                tenKhachHang = txt_TenKH.Text;
+                string tenKhachHang = txt_TenKH.Text;
+                int makh = int.Parse(txtMaKH.Text);
+                if (tenKhachHang == "")
+                {
+                    MessageBox.Show("Vui lòng nhập tên khách hàng");
+                }
+
+                else
+                {
+                    string diachi = txt_DiaChi.Text;
+                    string sdt = txt_SDT.Text;
+                    if (sdt == "")
+                    {
+                        MessageBox.Show("Vui lòng nhập số điện thoại!");
+                    }
+                    else if (!IsValidPhoneNumber(sdt))
+                    {
+                        MessageBox.Show("Số điện thoại không hợp lệ!");
+                        txt_SDT.Clear();
+                    }
+                    else
+                    {
+                        List<KhachHang> listKH = KhachHangDAO.Instance.LoadListKH();
+                        int flag = 0;
+                        foreach (var item in listKH)
+                        {
+                            if (item.SDT == sdt && item.MaKH != makh)
+                            {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 1)
+                        {
+                            MessageBox.Show("Số điện thoại đã tồn tại!");
+                        }
+                        else
+                        {
+                            KhachHangDAO.Instance.SuaDanhSach(tenKhachHang, diachi, sdt, makh);
+                            MessageBox.Show("Sửa thành công!");
+                        }
+                    }
+                }
+                loadKhachHang();
             }
             catch
             {
-                MessageBox.Show("Vui lòng chọn khách hàng muốn sửa!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
             }
-            if (tenKhachHang != "")
-            {
-
-                string diachi = txt_DiaChi.Text;
-                string sdt = txt_SDT.Text;
-                int makh = int.Parse(txtMaKH.Text);
-                KhachHangDAO.Instance.SuaDanhSach(tenKhachHang, diachi, sdt, makh);
-            }
-            loadKhachHang();
 
         }
         private void btn_timkiem_Click(object sender, EventArgs e)
